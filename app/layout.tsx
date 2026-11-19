@@ -1,4 +1,4 @@
-import '@fontsource/young-serif/400.css';
+import '@fontsource/marcellus/400.css';
 import '@fontsource/plus-jakarta-sans/400.css';
 import '@fontsource/plus-jakarta-sans/500.css';
 import '@fontsource/plus-jakarta-sans/600.css';

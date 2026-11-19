@@ -29,7 +29,7 @@ export default function SiteHeader() {
       </a>
       <div className="wadah kepala-isi">
         <Link href="/" className="merek" aria-label={t.nav.home}>
-          <Logo />
+          <Logo size={34} />
           SINGKAP
         </Link>
         <nav id="navigasi-utama" className="navigasi" data-buka={open} aria-label="Navigasi">

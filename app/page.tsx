@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FogHero from '@/components/FogHero';
 import Bars from '@/components/Bars';
+import { YearChart } from '@/components/Charts';
 import Meter from '@/components/Meter';
 import { PROVINSI, RINGKASAN, WARISAN, hiddenOpen } from '@/lib/data';
 import { getI18n } from '@/lib/lang-server';
@@ -28,6 +29,12 @@ export default async function Beranda() {
     .sort((a, b) => b.value - a.value)
     .map((d) => ({ ...d, display: f.pct(d.value, 0) }));
   const rec = R.rekomendasi;
+  const makna = (id: string) => {
+    const x = R.insights.find((i) => i.id === id);
+    const m = lang === 'en' ? x?.makna_en : x?.makna;
+    return m ? <p className="makna">{m}</p> : null;
+  };
+  const baru = R.insights.find((i) => i.id === 'penetapan_baru');
   const half = Math.max(1, Math.round(R.medianPv));
   const feat = H.feat;
   const featList: [string, [string, string]][] = [
@@ -87,6 +94,7 @@ export default async function Beranda() {
                 />
                 <p className="catatan">{H.f1Note}</p>
               </div>
+              {makna('ketakterlihatan')}
             </article>
             <article>
               <h3>{H.f2Title}</h3>
@@ -100,6 +108,7 @@ export default async function Beranda() {
                 />
                 <p className="catatan">{H.f2Note(f.dec(R.gini))}</p>
               </div>
+              {makna('ketimpangan_perhatian')}
             </article>
             <article>
               <h3>{H.f3Title(domainBars[0].label)}</h3>
@@ -108,6 +117,7 @@ export default async function Beranda() {
                 <Bars data={domainBars} />
                 <p className="catatan">{H.f3Note}</p>
               </div>
+              {makna('domain')}
             </article>
             <article>
               <h3>{H.f4Title}</h3>
@@ -127,8 +137,19 @@ export default async function Beranda() {
                   </li>
                 ))}
               </ol>
+              {makna('kekayaan_visibilitas')}
             </article>
           </div>
+          {baru && (
+            <div style={{ marginTop: 48 }}>
+              <YearChart
+                rows={R.grafik.perTahun}
+                title={lang === 'en' ? baru.judul_en ?? baru.judul : baru.judul}
+                caption={lang === 'en' ? baru.teks_en ?? baru.teks : baru.teks}
+              />
+              {makna('penetapan_baru')}
+            </div>
+          )}
         </div>
       </section>
 

@@ -80,10 +80,13 @@ analisis/            notebook yang sudah dijalankan dan keluarannya (tidak ikut 
 
 ## Catatan teknis
 
-- Worker MapLibre disalin otomatis ke `public/maplibre/` saat `npm install` dan `npm run build` (skrip `scripts/copy-maplibre-worker.mjs`).
+- Skrip `scripts/prepare-assets.mjs` berjalan otomatis saat `npm install` dan `npm run build`: menyalin worker MapLibre ke `public/maplibre/`, menyalin onnxruntime-web ke `public/ort/` (model AI tidak bergantung CDN), dan mengunduh 9 contoh foto rumah adat dari Wikimedia Commons ke `public/samples/`. Bila unduhan gagal, peramban memuat contoh foto langsung dari Wikimedia.
+- Kenali Rumah Adat bisa membuka kamera langsung (perlu HTTPS, otomatis di Vercel; di lokal berlaku untuk `localhost`).
 - Peta tidak memakai basemap pihak ketiga. Hanya poligon provinsi (geoBoundaries) dan titik (Wikidata, OpenStreetMap), sehingga tidak memerlukan API key peta.
-- onnxruntime-web 1.20.1 dimuat dari jsDelivr hanya saat halaman Kenali dibuka. Model (16 MB) di-cache peramban.
-- Huruf Young Serif dan Plus Jakarta Sans di-host sendiri melalui Fontsource.
+- Model ONNX (16 MB) dan onnxruntime-web dimuat hanya saat halaman Kenali dibuka, lalu di-cache peramban.
+- Huruf Marcellus (judul) dan Plus Jakarta Sans (isi) di-host sendiri melalui Fontsource.
+- Grafik di halaman Metodologi dan Beranda dibuat sebagai SVG beranimasi dari data (`components/Charts.tsx`), bukan gambar statis, sehingga mengikuti bahasa yang dipilih.
+- Latar memakai motif kawung yang bergeser perlahan dan pita tumpal di tepi bagian; animasi berhenti bila pengguna memilih kurangi gerakan.
 - Pembatas laju sederhana di `/api/chat`: 20 pertanyaan per menit per alamat IP pada setiap instance.
 
 ## Lisensi data

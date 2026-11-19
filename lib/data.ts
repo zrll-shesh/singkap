@@ -9,6 +9,20 @@ export interface Insight {
   id: string;
   judul: string;
   teks: string;
+  judul_en?: string;
+  teks_en?: string;
+  makna?: string;
+  makna_en?: string;
+}
+
+export interface Grafik {
+  lorenz: number[];
+  perTahun: { tahun: number; n: number; tanpa: number }[];
+  rho: { label: string[]; nilai: number[][] };
+  ablasi: { komponen: string; rho: number; irisan: number }[];
+  cvF1: { kelas: string; f1: number; n: number }[];
+  kurva: (EvalRow & { penalti: number })[];
+  dasar: EvalRow & { penalti: number };
 }
 
 export interface EvalRow {
@@ -39,6 +53,8 @@ export interface Ringkasan {
   cv: { kelas: string[]; akurasi_top1_uji: number; akurasi_top3_uji: number; f1_makro_uji: number; n_uji: number; ukuran_model_mb: number };
   rag: { hit_at_1: number; hit_at_5: number; akurasi_router: number; fpr_pada_tau: number; n_pertanyaan_positif: number };
   rekomendasi: { dasar: EvalRow; terpilih: EvalRow };
+  grafik: Grafik;
+  dkiPerkiraan?: boolean;
   sumberA: string;
   domain: Record<string, { n: number; tanpa: number }>;
 }

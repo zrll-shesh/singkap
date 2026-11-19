@@ -91,5 +91,8 @@
   "f1_makro_validasi_terbaik": 0.7853097411794594,
   "onnx_selisih_maks_vs_pytorch": 7.033348083496094e-06,
   "ukuran_model_mb": 16.07
+ },
+ "nonaktif": {
+  "Lamin": "Data latih kelas ini tercampur foto yang tidak relevan, sehingga dinonaktifkan sampai model dilatih ulang."
  }
 }

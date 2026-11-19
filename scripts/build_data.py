@@ -28,7 +28,7 @@ SRC = Path(sys.argv[1] if len(sys.argv) > 1 else 'SINGKAP_output')
 WEB = Path(__file__).resolve().parents[1]
 DATA = WEB / 'data'
 PUB = WEB / 'public'
-for p in [DATA, PUB / 'data', PUB / 'models', PUB / 'figures']:
+for p in [DATA, PUB / 'data', PUB / 'models']:
     p.mkdir(parents=True, exist_ok=True)
 
 SEED = 42
@@ -513,6 +513,56 @@ INSIGHTS = [
                  'open sources. Tourist flow uses 2025 domestic trips from Statistics Indonesia because foreign arrivals by province are not openly available.'),
 ]
 
+MAKNA = {
+    'ketakterlihatan': ('Artinya, seperempat warisan resmi kita belum bisa ditemukan lewat mesin pencari atau asisten AI, dan bagi wisatawan mancanegara hampir semuanya tidak terlihat.',
+                        'In other words, a quarter of official heritage cannot be found through search engines or AI assistants, and for international visitors almost all of it is invisible.'),
+    'ketimpangan_perhatian': ('Artinya, segelintir warisan terkenal menyedot hampir semua perhatian, sementara ribuan lainnya nyaris tidak pernah dibaca.',
+                              'In other words, a few famous items absorb almost all attention while thousands of others are almost never read.'),
+    'domain': ('Artinya, pengetahuan lokal tentang alam, yang paling rentan hilang bersama para penuturnya, justru paling sedikit terdokumentasi.',
+               'In other words, local knowledge about nature, the most likely to disappear with its keepers, is the least documented.'),
+    'penetapan_baru': ('Artinya, setiap penetapan baru perlu diikuti dokumentasi digital; tanpa itu, status resmi hanya tersimpan di atas kertas.',
+                       'In other words, every new designation needs digital documentation; without it, official status stays on paper.'),
+    'kaya_tersembunyi': ('Artinya, daerah yang paling perlu diangkat bukan tujuan wisata ternama, melainkan provinsi kaya budaya yang jarang dikunjungi dan jarang ditulis.',
+                         'In other words, the places that most need attention are not famous destinations but culturally rich provinces that are rarely visited or written about.'),
+    'kekayaan_visibilitas': ('Artinya, tanpa campur tangan, perhatian akan terus menumpuk di daerah yang sudah ramai. Inilah alasan SINGKAP dibutuhkan.',
+                             'In other words, without intervention attention keeps piling up where it is already crowded. This is why SINGKAP is needed.'),
+    'robust': ('Artinya, daftar provinsi dan warisan tersembunyi bukan kebetulan dari satu rumus; hasilnya tetap sama walau metodenya diubah.',
+               'In other words, the list of hidden provinces and items is not an artefact of one formula; it holds when the method changes.'),
+    'kepekaan': ('Artinya, SINGKAP tidak menjadikan semua budaya tontonan; ritus dan upacara hanya dikenalkan atas izin pemiliknya.',
+                 'In other words, SINGKAP does not turn every culture into a spectacle; rites and ceremonies are introduced only with their owners’ consent.'),
+    'rekomendasi': ('Artinya, wisatawan tetap mendapat rekomendasi yang sesuai minat, tetapi sebagian perhatian kini mengalir ke daerah yang selama ini terlewat.',
+                    'In other words, travellers still get relevant suggestions, but part of the attention now flows to places that used to be overlooked.'),
+    'cv': ('Artinya, siapa pun bisa mengenali rumah adat di depannya dan langsung terhubung ke warisan lain dari daerah asalnya, tanpa koneksi ke server.',
+           'In other words, anyone can recognise the house in front of them and connect straight to other heritage from its region, with no server involved.'),
+    'rag': ('Artinya, asisten SINGKAP bisa dipercaya: ia menjawab dari sumber yang jelas dan berani berkata belum tahu.',
+            'In other words, the SINGKAP assistant can be trusted: it answers from clear sources and is willing to say it does not know.'),
+    'cakupan': ('Artinya, temuan ini adalah batas bawah; dengan data penetapan terbaru, kesenjangannya kemungkinan lebih besar.',
+                'In other words, these findings are a lower bound; with the latest designations the gap is likely larger.'),
+}
+for x in INSIGHTS:
+    if x['id'] in MAKNA:
+        x['makna'], x['makna_en'] = MAKNA[x['id']]
+
+# Data grafik untuk halaman web
+pv_sorted = np.sort(item.loc[item['ada_artikel_id'].astype(str).str.lower() == 'true', 'pageviews_12b'].to_numpy(dtype=float))
+cum = np.insert(np.cumsum(pv_sorted) / max(pv_sorted.sum(), 1), 0, 0)
+idx = np.linspace(0, len(cum) - 1, 41).round().astype(int)
+per_tahun = item.groupby('tahun').agg(n=('id', 'size'), tanpa=('ada_artikel_id', lambda s: int((s.astype(str).str.lower() != 'true').sum())))
+rho_nb = pd.read_csv(SRC / '03_analisis/robust_spearman_provinsi.csv', index_col=0)
+abl_nb = pd.read_csv(SRC / '03_analisis/robust_ablasi_item.csv')
+rep = pd.read_csv(SRC / '05_model_cv/laporan_klasifikasi_uji.csv', index_col=0)
+GRAFIK = {
+    'lorenz': [round(float(cum[i]), 4) for i in idx],
+    'perTahun': [{'tahun': int(t), 'n': int(r['n']), 'tanpa': int(r['tanpa'])} for t, r in per_tahun.iterrows()],
+    'rho': {'label': [str(c).split(' (')[0] for c in rho_nb.columns], 'nilai': rho_nb.round(3).values.tolist()},
+    'ablasi': [{'komponen': r['komponen_dihapus'], 'rho': round(float(r['spearman_vs_dasar']), 3), 'irisan': round(float(r['irisan_top100']), 3)}
+               for _, r in abl_nb.iterrows()],
+    'cvF1': [{'kelas': k, 'f1': round(float(r['f1-score']), 3), 'n': int(r['support'])}
+             for k, r in rep.iterrows() if k in cvm['kelas'] and k != 'Lamin'],
+    'kurva': grid,
+    'dasar': base_eval,
+}
+
 # 5. Knowledge base
 docs_old = [json.loads(l) for l in open(SRC / '07_rag/kb_documents.jsonl', encoding='utf-8')]
 KEEP = {'tentang', 'metodologi', 'konteks', 'ensiklopedia', 'rumah_adat'}
@@ -705,7 +755,7 @@ dump(DATA / 'ringkasan.json', {
     'medianPv': T_old['median_pv'], 'perluPersetujuan': float((item['kepekaan'] == 'perlu_persetujuan').mean()),
     'nMuseum': int((pts['jenis'] == 'museum').sum()), 'nSitus': int((pts['jenis'] == 'situs_warisan').sum()),
     'top5': top5, 'kayaTersembunyi': kt, 'baliRank': bali_rank, 'insights': INSIGHTS, 'robust': ROBUST,
-    'cv': cvm, 'rag': ragc['evaluasi'], 'rekomendasi': {'dasar': base_eval, 'terpilih': best},
+    'cv': cvm, 'rag': ragc['evaluasi'], 'rekomendasi': {'dasar': base_eval, 'terpilih': best}, 'grafik': GRAFIK,
     'sumberA': A_SOURCE, 'pvWindow': '12 bulan penuh terakhir saat notebook dijalankan',
     'domain': {c: {'n': int((item['domain'] == c).sum()), 'tanpa': float(1 - item.loc[item['domain'] == c, 'ada_artikel_id'].mean())}
                for c in DOMAIN_LABEL},
@@ -713,11 +763,11 @@ dump(DATA / 'ringkasan.json', {
 dump(DATA / 'kb.json', CHUNKS)
 shutil.copy(SRC / '07_rag/intents.json', DATA / 'intents.json')
 labels = json.load(open(SRC / '05_model_cv/labels.json'))
+# Kelas yang data latihnya terbukti tercampur foto tidak relevan dinonaktifkan di web sampai model dilatih ulang
+NONAKTIF = {'Lamin': 'Data latih kelas ini tercampur foto yang tidak relevan, sehingga dinonaktifkan sampai model dilatih ulang.'}
+labels['nonaktif'] = {k: v for k, v in NONAKTIF.items() if k in [c['nama'] for c in labels['kelas']]}
 dump(PUB / 'models/labels.json', labels, indent=1)
 shutil.copy(SRC / '05_model_cv/rumah_adat.onnx', PUB / 'models/rumah_adat.onnx')
-for f in ['fig04_lorenz_pageviews', 'fig06_kuadran_k_vs_v', 'fig08_uji_ketahanan', 'fig10_tradeoff_relevansi_pemerataan',
-          'fig13_cv_matriks_kebingungan', 'fig15_kalibrasi_rag', 'fig02_tanpa_artikel_per_domain']:
-    shutil.copy(SRC / f'04_visualisasi/{f}.png', PUB / f'figures/{f}.png')
 manifest = pd.read_csv(SRC / '09_manifest/data_manifest.csv')
 manifest.loc[len(manifest)] = {'dataset': 'Arus wisata (perjalanan wisatawan nusantara 2025)', 'url': A_SOURCE.split(' ')[-1],
                                'lisensi': 'Data resmi BPS', 'catatan': 'provinsi pemekaran digabung ke induk', 'jumlah_baris': 34,

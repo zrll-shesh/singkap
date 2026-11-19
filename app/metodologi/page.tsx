@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { MANIFEST, RINGKASAN } from '@/lib/data';
+import { LorenzChart, QuadrantChart, RobustChart, TradeoffChart, YearChart, BarsFigure } from '@/components/Charts';
+import { MANIFEST, PROVINSI, RINGKASAN } from '@/lib/data';
 import { getI18n } from '@/lib/lang-server';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,16 +25,6 @@ const RUJUKAN = [
   'Koentjaraningrat. Pengantar Ilmu Antropologi. Jakarta: Rineka Cipta.',
 ];
 
-function Gambar({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <figure className="gambar-bingkai">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} loading="lazy" />
-      <figcaption>{caption}</figcaption>
-    </figure>
-  );
-}
-
 export default async function MetodologiPage() {
   const { f, lang } = await getI18n();
   const en = lang === 'en';
@@ -41,7 +32,8 @@ export default async function MetodologiPage() {
   const R = RINGKASAN;
   const rec = R.rekomendasi;
   const rb = R.robust;
-  const dki = (R as { dkiPerkiraan?: boolean }).dkiPerkiraan;
+  const dki = R.dkiPerkiraan;
+  const G = R.grafik;
 
   return (
     <>
@@ -117,32 +109,50 @@ export default async function MetodologiPage() {
             `Replacing multiplication with addition keeps a Spearman correlation of ${f.dec(rb.spearman_dasar_vs_aditif)}. Removing visibility components one by one gives a lowest correlation of ${f.dec(rb.spearman_ablasi_min)}, with at least ${f.pct(rb.irisan_top100_min, 0)} overlap in the top 100. Without tourist flow the correlation is only ${f.dec(rb.spearman_dasar_vs_tanpa_A)}, so that dimension genuinely adds information.`,
           )}
         </p>
-        <Gambar
-          src="/figures/fig08_uji_ketahanan.png"
-          alt={L('Matriks korelasi antarskema dan hasil ablasi', 'Correlation matrix across schemes and ablation results')}
-          caption={L('Uji ketahanan indeks, dari notebook analisis.', 'Index robustness tests, from the analysis notebook.')}
+        <RobustChart
+          rho={G.rho}
+          ablasi={G.ablasi}
+          title={L('Uji ketahanan: peringkat tetap stabil', 'Robustness: the ranking stays stable')}
+          caption={L(
+            'Kiri: korelasi peringkat provinsi antara tiga cara menghitung indeks; makin mendekati 1, makin sama hasilnya. Kanan: irisan 100 warisan paling tersembunyi ketika satu komponen visibilitas dihapus. Semua tetap tinggi, jadi hasilnya tidak bergantung pada satu pilihan metode.',
+            'Left: rank correlation of provinces between three ways of computing the index; closer to 1 means the same result. Right: overlap of the 100 most hidden items when one visibility component is removed. All remain high, so the result does not hinge on one methodological choice.',
+          )}
         />
 
         <h2>{L('Semua temuan', 'All findings')}</h2>
-        <ol>
-          {R.insights.map((x) => {
-            const xi = x as typeof x & { judul_en?: string; teks_en?: string };
-            return (
-              <li key={x.id} style={{ marginBottom: 14 }}>
-                <strong>{en ? xi.judul_en ?? x.judul : x.judul}.</strong> {en ? xi.teks_en ?? x.teks : x.teks}
-              </li>
-            );
-          })}
+        <ol className="daftar-temuan">
+          {R.insights.map((x) => (
+            <li key={x.id}>
+              <strong>{en ? x.judul_en ?? x.judul : x.judul}.</strong> {en ? x.teks_en ?? x.teks : x.teks}
+              {(en ? x.makna_en : x.makna) && <p className="makna">{en ? x.makna_en : x.makna}</p>}
+            </li>
+          ))}
         </ol>
-        <Gambar
-          src="/figures/fig04_lorenz_pageviews.png"
-          alt={L('Kurva Lorenz kunjungan halaman', 'Lorenz curve of page views')}
-          caption={L('Ketimpangan perhatian digital antarwarisan.', 'Inequality of digital attention across heritage items.')}
+        <YearChart
+          rows={G.perTahun}
+          title={L('Makin baru ditetapkan, makin tidak terlihat', 'The newer the designation, the less visible')}
+          caption={L(
+            'Jumlah warisan yang ditetapkan per tahun. Bagian kuning adalah warisan yang belum punya artikel Wikipedia, dan angka di atas batang adalah persentasenya. Sejak 2019, porsinya melonjak dari satu digit menjadi lebih dari sepertiga.',
+            'Items designated each year. The yellow part has no Wikipedia article, with its share shown above each bar. Since 2019 the share jumped from single digits to more than a third.',
+          )}
         />
-        <Gambar
-          src="/figures/fig06_kuadran_k_vs_v.png"
-          alt={L('Kuadran provinsi menurut kekayaan dan visibilitas', 'Provinces by richness and visibility')}
-          caption={L('Provinsi menurut kekayaan budaya (K) dan visibilitas digital (V).', 'Provinces by cultural richness (K) and digital visibility (V).')}
+        <LorenzChart
+          points={G.lorenz}
+          top10={R.top10}
+          gini={R.gini}
+          title={L('Ketimpangan perhatian digital', 'Inequality of digital attention')}
+          caption={L(
+            'Kurva Lorenz kunjungan halaman artikel warisan. Garis putus-putus adalah keadaan merata sempurna; makin jauh kurva kuning darinya, makin timpang. Sembilan puluh persen artikel hanya berbagi sebagian kecil perhatian publik.',
+            'Lorenz curve of page views for heritage articles. The dashed line is perfect equality; the further the yellow curve falls from it, the more unequal. Ninety percent of articles share only a small slice of public attention.',
+          )}
+        />
+        <QuadrantChart
+          data={PROVINSI.map((p) => ({ provinsi: p.provinsi, K: p.K, V: p.V, IKD: p.IKD, n: p.n, rank: p.rank }))}
+          title={L('Provinsi menurut kekayaan budaya dan visibilitas digital', 'Provinces by cultural richness and digital visibility')}
+          caption={L(
+            'Setiap gelembung adalah satu provinsi; ukurannya jumlah warisan, warnanya nilai IKD. Kotak kuning di kiri atas berisi provinsi yang kaya budaya namun tersembunyi. Arahkan kursor ke gelembung untuk melihat detailnya.',
+            'Each bubble is a province; size is the number of items, colour is the index. The yellow box at top left holds provinces that are culturally rich but hidden. Hover a bubble to see its details.',
+          )}
         />
 
         <h2>{L('Rekomendasi yang adil', 'Fair recommendations')}</h2>
@@ -158,10 +168,15 @@ export default async function MetodologiPage() {
             `λ is chosen by a rule: relevance (NDCG@10) of at least 0.90, inequality of exposure across provinces must not rise, then whichever lifts hidden heritage the most. Across 400 simulated travellers, λ = ${f.dec(rec.terpilih.lambda)} raises the average index of suggestions from ${f.dec(rec.dasar.ikd_rata2, 3)} to ${f.dec(rec.terpilih.ikd_rata2, 3)} and lowers the share of the five most visible provinces from ${f.pct(rec.dasar.porsi_5_terlihat)} to ${f.pct(rec.terpilih.porsi_5_terlihat)}, with NDCG@10 of ${f.dec(rec.terpilih.ndcg10)} and exposure Gini moving from ${f.dec(rec.dasar.gini)} to ${f.dec(rec.terpilih.gini)}.`,
           )}
         </p>
-        <Gambar
-          src="/figures/fig10_tradeoff_relevansi_pemerataan.png"
-          alt={L('Kurva kompromi relevansi dan keterungkapan', 'Trade-off between relevance and revealing hidden items')}
-          caption={L('Kurva kompromi dari notebook analisis.', 'Trade-off curve from the analysis notebook.')}
+        <TradeoffChart
+          kurva={G.kurva}
+          dasar={G.dasar}
+          pilih={rec.terpilih.lambda}
+          title={L('Menukar sedikit relevansi untuk banyak keterungkapan', 'Trading a little relevance for much more discovery')}
+          caption={L(
+            `Setiap titik adalah satu nilai λ. Bergerak ke kanan berarti rekomendasi makin banyak mengangkat warisan tersembunyi; bergerak ke bawah berarti makin kurang sesuai minat. SINGKAP memilih λ = ${f.dec(rec.terpilih.lambda)}: rata-rata IKD naik ${f.pct(rec.terpilih.ikd_rata2 / rec.dasar.ikd_rata2 - 1, 0)} sementara relevansi tetap di atas batas 0,90.`,
+            `Each point is one λ value. Moving right means suggestions lift more hidden heritage; moving down means they match interests less. SINGKAP picks λ = ${f.dec(rec.terpilih.lambda)}: the average index rises ${f.pct(rec.terpilih.ikd_rata2 / rec.dasar.ikd_rata2 - 1, 0)} while relevance stays above the 0.90 line.`,
+          )}
         />
 
         <h2>{L('Tanya Singkap', 'Ask SINGKAP')}</h2>
@@ -179,10 +194,13 @@ export default async function MetodologiPage() {
             `An EfficientNet-B0 model (Tan and Le, 2019) was trained on openly licensed Wikimedia Commons photos for ${R.cv.kelas.length} types of traditional houses, exported to ONNX (${f.dec(R.cv.ukuran_model_mb, 1)} MB), and runs directly in the browser. On ${R.cv.n_uji} test photos it reaches ${f.pct(R.cv.akurasi_top1_uji)} top-1 accuracy, ${f.pct(R.cv.akurasi_top3_uji)} top-3, and a macro F1 of ${f.dec(R.cv.f1_makro_uji)}.`,
           )}
         </p>
-        <Gambar
-          src="/figures/fig13_cv_matriks_kebingungan.png"
-          alt={L('Matriks kebingungan model rumah adat', 'Confusion matrix of the house model')}
-          caption={L('Matriks kebingungan pada data uji.', 'Confusion matrix on the test set.')}
+        <BarsFigure
+          data={G.cvF1.map((c) => ({ label: c.kelas, value: c.f1, display: f.dec(c.f1), tone: c.f1 >= 0.75 ? 'kunyit' : 'tarum' }))}
+          title={L('Skor F1 per jenis rumah adat', 'F1 score by house type')}
+          caption={L(
+            'F1 menggabungkan ketepatan dan kelengkapan tebakan; 1 berarti sempurna. Tongkonan dan Rumah Gadang paling mudah dikenali. Honai paling sulit karena fotonya paling sedikit. Kelas Lamin dinonaktifkan karena data latihnya tercampur foto yang tidak relevan.',
+            'F1 combines precision and recall; 1 is perfect. Tongkonan and Rumah Gadang are the easiest to recognise. Honai is hardest because it has the fewest photos. The Lamin class is disabled because its training data was mixed with unrelated photos.',
+          )}
         />
 
         <h2>{L('Penjaga Kepekaan Budaya', 'Cultural Sensitivity Guard')}</h2>
