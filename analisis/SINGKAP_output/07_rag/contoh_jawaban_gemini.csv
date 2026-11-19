@@ -1,0 +1,31 @@
+pertanyaan,jawaban
+halo,"Halo! Saya Singkap, asisten untuk menjelajahi warisan budaya Nusantara yang belum banyak dikenal. Kamu bisa tanya tentang suatu warisan, minta rekomendasi wisata budaya, atau cari tahu provinsi mana yang paling tersembunyi."
+Apa itu IKD dan bagaimana menghitungnya?,"Halo! Senang bisa membantu Anda mengenal warisan budaya nusantara dan platform SINGKAP. 
+
+Indeks Ketakterlihatan Digital (IKD) dihitung dengan rumus $\text{IKD} = K \times (1 - V) \times (1 - A)$ [1]. 
+
+Berikut adalah penjelasan komponennya:
+* **$K$ (Kekayaan budaya provinsi):** Jumlah WBTbI, keragaman domain, jumlah museum, dan jumlah situs warisan [1].
+* **$V$ (Visibilitas digital):** Mencakup artikel Wikipedia bahasa Indonesia, artikel bahasa Inggris, butir Wikidata, gambar utama, kunjungan halaman 12 bulan, dan panjang artikel [1].
+* **$A$ (Arus wisata provinsi):** Data dari BPS [1].
+
+Semua indikator dinormalisasi dengan peringkat persentil ke rentang 0 sampai 1 [1]. Bentuk perkalian dipilih agar warisan dari daerah berkekayaan rendah tidak mendapat skor tinggi hanya karena tidak terlihat [1]. Nilai IKD yang tinggi menunjukkan bahwa warisan tersebut kaya secara budaya, tetapi belum banyak terlihat secara digital dan jarang dikunjungi [1].
+
+Ada lagi yang ingin Anda ketahui tentang warisan budaya atau fitur SINGKAP?"
+"hai kak, warisan apa yang paling tersembunyi di Jawa Timur?","Warisan budaya takbenda yang paling tersembunyi dan terbuka untuk dikunjungi di Jawa Timur meliputi Mocoan Lontar Yusup Banyuwangi, Ajaran Samin Surosentiko Bojonegoro, Brojo Geni Tremas Pacitan, Ta' Butaan Jember, serta Tenun Ikat Bandar Kidul [1]. 
+
+Jika Anda berencana berkunjung, silakan buka fitur **Jalur Singkap** untuk menjelajahi warisan-warisan tersembunyi tersebut!"
+Ceritakan tentang Berkhatam Al-Qur'an Lingga,"Halo! Senang bisa membantu Anda mengenal lebih dekat warisan budaya Indonesia. 
+
+Berkhatam Al-Qur'an Lingga adalah Warisan Budaya Takbenda Indonesia yang berasal dari Provinsi Kepulauan Riau dan ditetapkan pada tahun 2019 dengan nomor registrasi 201900846 [1]. Tradisi ini termasuk dalam domain Adat Istiadat Masyarakat, Ritus, dan Perayaan, serta mencakup unsur kebudayaan sistem religi dan organisasi sosial [1]. 
+
+Warisan budaya ini memiliki Indeks Kekayaan Budaya (IKD) sebesar 0,526 dan berada di peringkat 1 dari 1908 warisan, yang menjadikannya sangat tersembunyi [1]. Perlu diketahui bahwa Berkhatam Al-Qur'an Lingga memiliki status kepekaan ""perlu persetujuan"", sehingga memerlukan persetujuan dari pemerintah daerah atau komunitas sebelum dapat dipromosikan sebagai objek wisata [1]. 
+
+Ada hal lain seputar warisan budaya atau fitur SINGKAP yang ingin kamu ketahui?"
+Rekomendasikan wisata tari tradisional di luar Bali,"Halo! Tentu, saya bisa bantu merekomendasikan wisata tari tradisional yang menarik di luar Bali. 
+
+Saya rekomendasikan **Tari Balumpa** yang berasal dari Wakatobi, Sulawesi Tenggara [2]. Tarian pergaulan yang dibawakan oleh penari wanita ini ditampilkan untuk menyambut tamu terhormat dengan gerakan yang lembut, anggun, serta mencerminkan keramahan masyarakat setempat [2]. 
+
+Karena tarian ini merupakan warisan budaya tersembunyi yang terbuka untuk direkomendasikan, kamu bisa memasukkannya ke dalam rencana perjalananmu dan membuka fitur **Jalur Singkap** untuk mengeksplorasinya lebih jauh [2]! Ada lagi yang ingin kamu ketahui?"
+Berapa harga bitcoin?,"Maaf, saya belum punya informasi yang cukup untuk menjawab itu. Saya fokus pada warisan budaya Indonesia, misalnya: apa itu suatu warisan, warisan tersembunyi di suatu provinsi, atau cara kerja SINGKAP."
+terima kasih,"Sama-sama! Kalau ada warisan lain yang ingin kamu ketahui, tanyakan saja."

@@ -1,0 +1,148 @@
+{
+ "intents": [
+  {
+   "intent": "salam_islam",
+   "pola": [
+    "^(as+alamu\\s*al[ae]i?kum|asalamualaikum|assalamualaikum|asw|aslm)\\b"
+   ],
+   "contoh": [
+    "assalamualaikum",
+    "assalamualaikum wr wb",
+    "asalamualaikum kak"
+   ],
+   "maks_kata": 8,
+   "jawaban": [
+    "Waalaikumsalam warahmatullahi wabarakatuh. Saya Singkap, siap membantu menjelajahi warisan budaya Nusantara. Mau mulai dari mana?"
+   ]
+  },
+  {
+   "intent": "sapaan",
+   "pola": [
+    "^(h+a+l+o+|h+a+l+l+o+|h+a+i+|h+e+y+|h+i+|h+e+l+o+|hello|p+|permisi|punten|spada|halo\\w*|hai\\w*|hi\\w*|oi|woi)(\\s+(kak|kakak|min|mimin|admin|bang|mas|mbak|sis|gan|singkap|bot|semua|guys|sobat|teman|bro))*$"
+   ],
+   "contoh": [
+    "halo",
+    "hai",
+    "hi",
+    "haloo kak",
+    "hai singkap",
+    "p",
+    "permisi",
+    "hello",
+    "hey min"
+   ],
+   "maks_kata": 6,
+   "jawaban": [
+    "Halo! Saya Singkap, asisten untuk menjelajahi warisan budaya Nusantara yang belum banyak dikenal. Kamu bisa tanya tentang suatu warisan, minta rekomendasi wisata budaya, atau cari tahu provinsi mana yang paling tersembunyi.",
+    "Hai! Senang bertemu. Saya bisa bantu cari warisan budaya tersembunyi, menjelaskan cara kerja Indeks Ketakterlihatan Digital, atau menyusun ide perjalanan budaya. Mau coba yang mana?"
+   ]
+  },
+  {
+   "intent": "salam_waktu",
+   "pola": [
+    "^(selamat\\s+)?(pagi|siang|sore|malam)(\\s+(kak|min|semua|singkap|bro|sis))*$"
+   ],
+   "contoh": [
+    "selamat pagi",
+    "pagi kak",
+    "selamat malam min",
+    "sore"
+   ],
+   "maks_kata": 4,
+   "jawaban": [
+    "Selamat datang di SINGKAP! Ada warisan budaya yang ingin kamu singkap hari ini?"
+   ]
+  },
+  {
+   "intent": "terima_kasih",
+   "pola": [
+    "\\b(terima\\s*kasih|terimakasih|makasih|makasi|trims|thanks|thank\\s*you|thx|tq|tengkyu|matur\\s*nuwun|hatur\\s*nuhun)\\b"
+   ],
+   "contoh": [
+    "terima kasih",
+    "makasih ya",
+    "thanks",
+    "tq kak",
+    "matur nuwun"
+   ],
+   "maks_kata": 4,
+   "jawaban": [
+    "Sama-sama! Kalau ada warisan lain yang ingin kamu ketahui, tanyakan saja."
+   ]
+  },
+  {
+   "intent": "pamit",
+   "pola": [
+    "\\b(dadah|bye|sampai\\s+jumpa|see\\s+you|pamit|good\\s*bye)\\b"
+   ],
+   "contoh": [
+    "dadah",
+    "bye",
+    "sampai jumpa",
+    "pamit dulu ya"
+   ],
+   "maks_kata": 4,
+   "jawaban": [
+    "Sampai jumpa! Semoga perjalanan budayamu menyenangkan."
+   ]
+  },
+  {
+   "intent": "identitas",
+   "pola": [
+    "\\b(siapa\\s+(kamu|anda|ini|namamu)|kamu\\s+(siapa|itu\\s+apa)|apa\\s+itu\\s+singkap|singkap\\s+itu\\s+apa|ini\\s+(aplikasi|web|website|situs)\\s+apa|kamu\\s+ai\\b)"
+   ],
+   "contoh": [
+    "siapa kamu",
+    "kamu siapa",
+    "apa itu singkap",
+    "ini web apa"
+   ],
+   "maks_kata": 7,
+   "jawaban": [
+    "Saya Singkap, asisten dari platform SINGKAP (Sistem Inteligensi Nusantara Guna Kebangkitan Aset Pusaka). Saya membantu menemukan warisan budaya Indonesia yang sudah ditetapkan tetapi belum banyak dikenal, dan setiap jawaban saya sertai sumbernya."
+   ]
+  },
+  {
+   "intent": "kemampuan",
+   "pola": [
+    "\\b(bisa\\s+apa|bisa\\s+bantu\\s+apa|bantu\\s+apa|fitur(nya)?\\s+apa|cara\\s+(pakai|menggunakan|make)|apa\\s+saja\\s+yang\\s+bisa|gimana\\s+cara\\s+pakai|help|bantuan)\\b"
+   ],
+   "contoh": [
+    "bisa apa",
+    "kamu bisa bantu apa",
+    "fiturnya apa saja",
+    "cara pakai",
+    "help"
+   ],
+   "maks_kata": 8,
+   "jawaban": [
+    "Saya bisa: menjelaskan warisan budaya takbenda Indonesia beserta sumbernya; menunjukkan provinsi dan warisan yang paling tersembunyi menurut IKD; membantu ide perjalanan budaya lewat Jalur Singkap; dan menjelaskan cara kerja fitur seperti Kenali Rumah Adat dan Penjaga Kepekaan Budaya."
+   ]
+  },
+  {
+   "intent": "pujian",
+   "pola": [
+    "^(keren|mantap|mantul|bagus|hebat|wow|wah|asik|asyik|nice|good)(\\s+\\w+){0,3}$"
+   ],
+   "contoh": [
+    "keren",
+    "mantap banget",
+    "wah bagus",
+    "nice"
+   ],
+   "maks_kata": 4,
+   "jawaban": [
+    "Terima kasih! Masih banyak warisan yang menunggu untuk disingkap. Mau lanjut menjelajah?"
+   ]
+  }
+ ],
+ "quick_replies": [
+  "Apa itu IKD?",
+  "Warisan tersembunyi di Jawa Timur",
+  "Rekomendasi wisata budaya",
+  "Provinsi paling tersembunyi"
+ ],
+ "pola_aksi_rekomendasi": "\\b(rekomendasi\\w*|saran(kan)?|liburan|jalan\\s*-?\\s*jalan|itinerary|rute|destinasi|mau\\s+ke|wisata\\s+ke)\\b",
+ "pola_sapaan_awal": "^(h+a+l+o+|h+a+i+|hai|hi|hello|hey|permisi|assalamu\\w*|selamat\\s+(pagi|siang|sore|malam))\\b[\\s,!.]*(kak|min|admin|singkap|semua)?[\\s,!.]*",
+ "pola_topik": "\\b(special capital region of jakarta|jakarta special capital region|daerah khusus ibukota jakarta|special region of yogyakarta|daerah istimewa yogyakarta|kepulauan bangka belitung|nanggroe aceh darussalam|bangka belitung islands|daerah khusus jakarta|daerah istimewa aceh|south east sulawesi|nusa tenggara barat|nusa tenggara timur|kalimantan selatan|east nusa tenggara|west nusa tenggara|central kalimantan|southeast sulawesi|kalimantan tengah|sulawesi tenggara|sumatera selatan|sulawesi selatan|irian jaya barat|papua barat daya|kalimantan utara|kalimantan timur|papua pegunungan|central sulawesi|south kalimantan|north kalimantan|kalimantan barat|koentjaraningrat|south west papua|bangka belitung|ketakterlihatan|sumatra selatan|southwest papua|sulawesi tengah|east kalimantan|west kalimantan|papua highlands|north sulawesi|sulawesi barat|kepulauan riau|south sumatera|sulawesi utara|south sulawesi|highland papua|sumatera utara|north sumatera|sumatera barat|north sumatra|sumatra barat|papua selatan|sumatra utara|di yogyakarta|west sulawesi|west sumatera|south sumatra|central papua|maluku utara|papua tengah|north maluku|west sumatra|central java|riau islands|jakarta raya|tersembunyi|south papua|dki jakarta|visibilitas|rekomendasi|jawa tengah|papua barat|tradisional|irian jaya|jawa timur|yogyakarta|jogjakarta|west papua|jawa barat|pemerataan|gorontalo|west java|east java|permainan|kerajinan|kesenian|kekayaan|kepekaan|bengkulu|provinsi|moluccas|legenda|singkap|tradisi|warisan|liburan|makanan|kalteng|kuliner|songket|kaltara|upacara|gamelan|lampung|minuman|senjata|pakaian|sulteng|jakarta|aksara|maluku|budaya|ritual|sulbar|wisata|indeks|daerah|sulsel|pantun|cerita|sumsel|kalsel|banten|pusaka|jateng|wayang|kaltim|sumbar|kalbar|tarian|museum|bahasa|dasbor|sultra|malut|papua|kepri|jambi|jatim|tenun|etnis|keris|sulut|jalur|rumah|candi|wbtbi|babel|sumut|syair|jabar|musik|situs|silat|batik|suku|lagu|peta|adat|ulos|wbtb|riau|bali|aceh|tari|ikd|ntb|ntt|dki|kue|diy|nad)\\b"
+}

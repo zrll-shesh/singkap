@@ -1,0 +1,16 @@
+file,caption
+04_visualisasi/fig01_penetapan_per_tahun.png,Jumlah WBTbI per tahun penetapan dan cakupan data terhadap angka resmi
+04_visualisasi/fig02_tanpa_artikel_per_domain.png,Persentase WBTbI tanpa artikel Wikipedia per domain
+04_visualisasi/fig03_tanpa_artikel_per_provinsi.png,Persentase WBTbI tanpa artikel per provinsi dengan penanda tipologi
+04_visualisasi/fig04_lorenz_pageviews.png,Kurva Lorenz kunjungan halaman artikel WBTbI
+04_visualisasi/fig05_peta_ikd_provinsi.png,Peta IKD per provinsi dengan lima provinsi tertinggi
+04_visualisasi/fig06_kuadran_k_vs_v.png,Kuadran provinsi berdasarkan kekayaan budaya dan visibilitas digital
+04_visualisasi/fig07_top20_tersembunyi.png,Dua puluh WBTbI dengan IKD tertinggi beserta status kepekaan
+04_visualisasi/fig08_uji_ketahanan.png,Uji ketahanan IKD terhadap skema agregasi dan ablasi komponen
+04_visualisasi/fig09_kepekaan_per_domain.png,Jumlah warisan berstatus terbuka dan perlu persetujuan per domain
+04_visualisasi/fig10_tradeoff_relevansi_pemerataan.png,"Kompromi relevansi, keterungkapan warisan tersembunyi, dan pemerataan eksposur"
+04_visualisasi/fig11_cv_sampel_dataset.png,Sampel acak dataset rumah adat untuk pemeriksaan kualitas manual
+04_visualisasi/fig12_cv_kurva_pelatihan.png,Kurva pelatihan model Kenali Rumah Adat
+04_visualisasi/fig13_cv_matriks_kebingungan.png,Matriks kebingungan ternormalisasi pada data uji
+04_visualisasi/fig14_cv_contoh_prediksi.png,"Contoh prediksi model pada data uji (hijau benar, merah salah)"
+04_visualisasi/fig15_kalibrasi_rag.png,Distribusi skor retrieval untuk pertanyaan dalam dan di luar cakupan beserta ambang

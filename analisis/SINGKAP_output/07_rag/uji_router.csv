@@ -1,0 +1,22 @@
+pesan,harapan,hasil,intent,aksi,skor,benar
+halo,intent,intent,sapaan,,1.0,True
+hai,intent,intent,sapaan,,1.0,True
+haloo kak,intent,intent,sapaan,,1.0,True
+p,intent,intent,sapaan,,1.0,True
+hi singkap,intent,intent,sapaan,,1.0,True
+Assalamualaikum,intent,intent,salam_islam,,1.0,True
+selamat malam min,intent,intent,salam_waktu,,1.0,True
+makasih ya,intent,intent,terima_kasih,,1.0,True
+terima kasih banyak,intent,intent,terima_kasih,,1.0,True
+siapa kamu?,intent,intent,identitas,,1.0,True
+kamu bisa apa,intent,intent,kemampuan,,1.0,True
+keren banget,intent,intent,pujian,,1.0,True
+dadah,intent,intent,pamit,,1.0,True
+"halo, apa itu IKD?",rag,rag,,,0.879,True
+"hai kak, warisan tersembunyi di Jawa Timur apa saja?",rag,rag,,,0.863,True
+Apa itu indeks ketakterlihatan digital?,rag,rag,,,0.92,True
+rekomendasi wisata budaya di Sumatera Barat,rag,rag,,buka_jalur_singkap,0.871,True
+Berapa jumlah WBTbI?,rag,rag,,,0.869,True
+harga bitcoin hari ini,tidak_tahu,tidak_tahu,,,0.818,True
+cara install python,tidak_tahu,tidak_tahu,,,0.789,True
+siapa pemenang piala dunia 2022,tidak_tahu,tidak_tahu,,,0.816,True

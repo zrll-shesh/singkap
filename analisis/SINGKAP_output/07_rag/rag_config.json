@@ -1,0 +1,64 @@
+{
+ "embedding_model": "intfloat/multilingual-e5-small",
+ "embedding_web_transformers_js": "Xenova/multilingual-e5-small",
+ "prefix_query": "query: ",
+ "prefix_passage": "passage: ",
+ "normalisasi": "L2",
+ "dimensi": 384,
+ "top_k": 6,
+ "ambang_tau": 0.844653844833374,
+ "urutan_router": [
+  "intent (regex lalu embedding contoh)",
+  "retrieval",
+  "ambang tau atau pola topik",
+  "LLM dengan sitasi"
+ ],
+ "llm": "gemini-3.5-flash-lite",
+ "temperature": 0.2,
+ "evaluasi": {
+  "ambang_tau": 0.844653844833374,
+  "hit_at_1": 0.952054794520548,
+  "hit_at_5": 0.9965753424657534,
+  "tpr_pada_tau": 0.9965753424657534,
+  "fpr_pada_tau": 0.0,
+  "n_pertanyaan_positif": 292,
+  "n_pertanyaan_negatif": 30,
+  "akurasi_router": 1.0,
+  "model_gemini_uji": "gemini-3.5-flash-lite"
+ },
+ "uji_kesetaraan_embedding": {
+  "catatan": "Delapan nilai pertama embedding query di notebook. Hasil di web harus mendekati nilai ini.",
+  "nilai": {
+   "Apa itu IKD?": [
+    0.10770999640226364,
+    -0.002899999963119626,
+    -0.08305999636650085,
+    -0.046720001846551895,
+    0.03691000118851662,
+    -0.045090001076459885,
+    0.041359998285770416,
+    0.04140999913215637
+   ],
+   "warisan tersembunyi di Jawa Timur": [
+    0.08744999766349792,
+    -0.04546000063419342,
+    -0.020999999716877937,
+    -0.05753999948501587,
+    0.022830000147223473,
+    -0.02864000014960766,
+    0.011189999990165234,
+    -0.009390000253915787
+   ],
+   "tari tradisional": [
+    0.08143000304698944,
+    -0.011149999685585499,
+    -0.03953000158071518,
+    -0.09810999780893326,
+    0.02469000034034252,
+    -0.030090000480413437,
+    0.03556999936699867,
+    0.01907999999821186
+   ]
+  }
+ }
+}

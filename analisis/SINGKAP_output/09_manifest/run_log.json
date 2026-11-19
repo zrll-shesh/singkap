@@ -1,0 +1,36 @@
+{
+ "mulai": "2026-11-19T19:04:46",
+ "langkah": [
+  "19:04:46 Colab: True | FAST_MODE: False | Output: /content/SINGKAP_output",
+  "19:05:09 Baris penetapan terbaca dari Wikipedia: 1941 (revisi 30175284)",
+  "19:05:09 Cakupan data WBTbI terhadap angka resmi 2025: 71,2%",
+  "19:07:22 Sampel verifikasi penautan diekspor: 40 baris",
+  "19:14:20 Poligon provinsi: 34 (sisanya memakai koordinat ibu kota: [])",
+  "19:17:48 Dimensi arus wisata tersedia: True (manual)",
+  "19:19:47 Embedding warisan: (1925, 384) | ringkasan tersedia untuk 1.450 warisan",
+  "19:27:34 Knowledge base: 2092 dokumen, 2157 chunk, dimensi 384",
+  "19:28:03 RAG diekspor: 2157 chunk | tau 0.845 | hit@5 99,7%"
+ ],
+ "peringatan": [
+  "Kelas dengan gambar terlalu sedikit dikeluarkan: {'Rumah Adat Sasak': 34, 'Omo Hada Nias': 8}"
+ ],
+ "selesai": "2026-11-19T19:28:04",
+ "konfigurasi": {
+  "FAST_MODE": false,
+  "RUN_CV": true,
+  "EMBED_MODEL": "intfloat/multilingual-e5-small",
+  "CV_ARCH": "efficientnet_b0",
+  "GEMINI_MODEL": "gemini-3.5-flash-lite",
+  "NDCG_MIN": 0.9,
+  "SEED": 42,
+  "sumber_wbtbi": "wikipedia"
+ },
+ "kualitas_data": {
+  "jumlah_baris": 1925,
+  "domain_terklasifikasi": 0.9979220779220779,
+  "provinsi_terpetakan": 0.9911688311688311,
+  "baris_bertautan": 0.9963636363636363,
+  "cakupan_vs_resmi_2025": 0.7117711771177118,
+  "sumber": "wikipedia"
+ }
+}

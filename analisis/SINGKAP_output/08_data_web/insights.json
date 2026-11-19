@@ -1,0 +1,199 @@
+{
+ "statistik": {
+  "n_item": 1925,
+  "pct_tanpa_id": 0.24363636363636365,
+  "pct_tanpa_en": 0.8784415584415585,
+  "n_tanpa_id": 469,
+  "pct_link_pencarian": 0.0212987012987013,
+  "gini_pageviews": 0.784770127788803,
+  "share_top10pct": 0.6898777799524327,
+  "median_pv": 304.0,
+  "chi2_domain_p": 2.1780381214250868e-13,
+  "cramers_v_domain": 0.18443279021801806,
+  "domain_paling_tersembunyi": "Pengetahuan dan Kebiasaan Perilaku Mengenai Alam dan Semesta",
+  "domain_paling_tersembunyi_pct": 0.34090909090909094,
+  "domain_paling_terlihat": "Seni Pertunjukan",
+  "domain_paling_terlihat_pct": 0.13028169014084512,
+  "kruskal_domain_p": 1.2250429077555737e-17,
+  "mw_baru_vs_lama_p": 6.8720621511597645e-19,
+  "pct_tanpa_id_baru": 0.4593301435406698,
+  "pct_tanpa_id_lama": 0.21736596736596736,
+  "spearman_K_V": 0.2612881052778065,
+  "spearman_K_V_p": 0.13553155026779762,
+  "spearman_A_V": 0.4704354469060351,
+  "spearman_A_V_p": 0.0049900065623573265,
+  "prov_ikd_tertinggi": [
+   "Kepulauan Riau",
+   "Kepulauan Bangka Belitung",
+   "Maluku Utara",
+   "Jambi",
+   "Nusa Tenggara Timur"
+  ],
+  "prov_ikd_terendah": [
+   "Jawa Tengah",
+   "Jawa Barat",
+   "Jawa Timur"
+  ],
+  "n_kaya_tersembunyi": 6,
+  "prov_kaya_tersembunyi": [
+   "Jambi",
+   "Lampung",
+   "Kepulauan Riau",
+   "DI Yogyakarta",
+   "Bali",
+   "Nusa Tenggara Timur"
+  ],
+  "pct_perlu_persetujuan": 0.28935064935064936,
+  "robust": {
+   "bobot_pca_V": {
+    "v_artikel_id": 0.181,
+    "v_artikel_en": 0.115,
+    "v_wikidata": 0.166,
+    "v_gambar": 0.15,
+    "v_pageviews": 0.203,
+    "v_panjang": 0.185
+   },
+   "bobot_pca_K": {
+    "k_n_wbtbi": 0.27,
+    "k_entropi_domain": 0.098,
+    "k_n_museum": 0.32,
+    "k_n_situs": 0.312
+   },
+   "spearman_min_provinsi": 0.9016042780748663,
+   "spearman_min_item": 0.9827567079275209,
+   "irisan_top100_min": 0.86,
+   "spearman_dasar_vs_tanpa_A": 0.16241405653170357
+  }
+ },
+ "temuan": [
+  {
+   "id": "ketakterlihatan_nasional",
+   "judul": "Sebagian besar warisan belum memiliki artikel",
+   "teks": "Dari 1.925 WBTbI yang dianalisis, 24,4% (469 warisan) belum memiliki artikel Wikipedia bahasa Indonesia, dan 87,8% belum memiliki artikel bahasa Inggris.",
+   "angka": {
+    "pct_tanpa_id": 0.24363636363636365,
+    "pct_tanpa_en": 0.8784415584415585
+   }
+  },
+  {
+   "id": "ketimpangan_perhatian",
+   "judul": "Perhatian publik sangat timpang",
+   "teks": "Di antara warisan yang sudah memiliki artikel, koefisien Gini kunjungan halaman mencapai 0,78. Sepuluh persen artikel teratas menyerap 69,0% seluruh kunjungan selama 2025-11 s.d. 2026-10, sedangkan median kunjungan hanya 304 per tahun.",
+   "angka": {
+    "gini": 0.784770127788803,
+    "share_top10pct": 0.6898777799524327
+   }
+  },
+  {
+   "id": "domain",
+   "judul": "Ketakterlihatan berbeda antardomain",
+   "teks": "Domain Pengetahuan dan Kebiasaan Perilaku Mengenai Alam dan Semesta paling tersembunyi (34,1% tanpa artikel), sedangkan Seni Pertunjukan paling terlihat (13,0% tanpa artikel). Hubungan domain dan keberadaan artikel signifikan secara statistik (p < 0,05), Cramér's V = 0,18.",
+   "angka": {}
+  },
+  {
+   "id": "penetapan_baru",
+   "judul": "Penetapan baru belum terlihat",
+   "teks": "Warisan yang ditetapkan sejak 2023 45,9% tanpa artikel, dibandingkan 21,7% untuk penetapan sebelum 2023. Perbedaan visibilitasnya signifikan secara statistik (p < 0,05).",
+   "angka": {}
+  },
+  {
+   "id": "kaya_tersembunyi",
+   "judul": "Provinsi kaya budaya namun tersembunyi",
+   "teks": "Terdapat 6 provinsi dengan kekayaan budaya di atas median tetapi visibilitas di bawah median: Jambi, Lampung, Kepulauan Riau, DI Yogyakarta, Bali, Nusa Tenggara Timur. Lima provinsi dengan IKD tertinggi: Kepulauan Riau, Kepulauan Bangka Belitung, Maluku Utara, Jambi, Nusa Tenggara Timur.",
+   "angka": {}
+  },
+  {
+   "id": "kekayaan_vs_visibilitas",
+   "judul": "Kekayaan tidak menjamin visibilitas",
+   "teks": "Korelasi Spearman antara kekayaan budaya (K) dan visibilitas (V) provinsi adalah 0,26 dan tidak signifikan secara statistik (p >= 0,05).",
+   "angka": {}
+  },
+  {
+   "id": "arus_vs_visibilitas",
+   "judul": "Arus wisata dan visibilitas digital",
+   "teks": "Korelasi Spearman antara arus wisata (A) dan visibilitas (V) provinsi adalah 0,47, signifikan secara statistik (p < 0,05).",
+   "angka": {}
+  },
+  {
+   "id": "robust",
+   "judul": "Indeks stabil terhadap pilihan bobot",
+   "teks": "Korelasi Spearman terendah antarskema agregasi pada tingkat provinsi adalah 0,90, dan pada uji ablasi tingkat warisan 0,98, dengan irisan 100 warisan teratas paling rendah 86%. Menghapus dimensi arus wisata menghasilkan korelasi 0,16 dengan versi dasar, sehingga dimensi A memberi informasi tambahan yang berarti.",
+   "angka": {}
+  },
+  {
+   "id": "kepekaan",
+   "judul": "Porsi warisan yang perlu persetujuan",
+   "teks": "Sebanyak 28,9% warisan ditandai perlu persetujuan oleh Penjaga Kepekaan Budaya dan tidak direkomendasikan sebagai objek wisata sebelum dikonfirmasi pemda atau komunitas.",
+   "angka": {}
+  },
+  {
+   "id": "rekomendasi_berkeadilan",
+   "judul": "Menyingkap warisan tersembunyi tanpa menciptakan keramaian baru",
+   "teks": "Pada simulasi 400 pengguna, konfigurasi λ = 0,90 dengan penalti keberagaman provinsi menaikkan rata-rata IKD warisan yang direkomendasikan dari 0,129 menjadi 0,153, mengubah porsi eksposur lima provinsi paling terlihat dari 15,0% menjadi 12,2%, dan menurunkan Gini eksposur antarprovinsi (0,26 menjadi 0,24), dengan retensi relevansi NDCG@10 sebesar 0,95.",
+   "angka": {}
+  },
+  {
+   "id": "cv",
+   "judul": "Model Kenali Rumah Adat",
+   "teks": "Model efficientnet_b0 untuk 10 jenis rumah adat mencapai akurasi top-1 79,2%, akurasi top-3 91,9%, dan F1 makro 0,77 pada 197 gambar uji. Model berukuran 16.07 MB dan berjalan di peramban melalui ONNX.",
+   "angka": {}
+  },
+  {
+   "id": "rag",
+   "judul": "Asisten yang tahu batas pengetahuannya",
+   "teks": "Pada uji 292 pertanyaan dalam cakupan, dokumen yang tepat ditemukan di posisi pertama untuk 95,2% pertanyaan dan di lima teratas untuk 99,7%. Ambang terkalibrasi memisahkan pertanyaan di luar cakupan dengan tingkat salah terima 0,0%.",
+   "angka": {}
+  }
+ ],
+ "rekomendasi": {
+  "lambda_terpilih": 0.9,
+  "penalti_provinsi": 0.12,
+  "ndcg_min": 0.9,
+  "aturan_pemilihan": "NDCG@10 >= NDCG_MIN, Gini tidak naik lebih dari 0,01, rata-rata IKD rekomendasi maksimum",
+  "gini_dasar": 0.2552369360488374,
+  "gini_terpilih": 0.2430608369955442,
+  "ndcg_terpilih": 0.9526050087214918,
+  "ikd_rekomendasi_dasar": 0.12907690029914037,
+  "ikd_rekomendasi_terpilih": 0.15305172496287953,
+  "provinsi_terjangkau_dasar": 34,
+  "provinsi_terjangkau_terpilih": 34,
+  "porsi_5_terlihat_dasar": 0.14998538483419174,
+  "porsi_5_terlihat_terpilih": 0.12218844641674032,
+  "ada_konfigurasi_memenuhi_syarat": true
+ },
+ "cv": {
+  "arsitektur": "efficientnet_b0",
+  "kelas": [
+   "Honai",
+   "Joglo",
+   "Lamin",
+   "Mbaru Niang",
+   "Rumah Betang",
+   "Rumah Bolon",
+   "Rumah Gadang",
+   "Rumah Limas",
+   "Rumoh Aceh",
+   "Tongkonan"
+  ],
+  "n_latih": 917,
+  "n_validasi": 196,
+  "n_uji": 197,
+  "akurasi_top1_uji": 0.7918781725888325,
+  "akurasi_top3_uji": 0.9187817258883249,
+  "f1_makro_uji": 0.766186460985702,
+  "f1_makro_validasi_terbaik": 0.7853097411794594,
+  "onnx_selisih_maks_vs_pytorch": 7.033348083496094e-06,
+  "ukuran_model_mb": 16.07
+ },
+ "rag": {
+  "ambang_tau": 0.844653844833374,
+  "hit_at_1": 0.952054794520548,
+  "hit_at_5": 0.9965753424657534,
+  "tpr_pada_tau": 0.9965753424657534,
+  "fpr_pada_tau": 0.0,
+  "n_pertanyaan_positif": 292,
+  "n_pertanyaan_negatif": 30,
+  "akurasi_router": 1.0,
+  "model_gemini_uji": "gemini-3.5-flash-lite"
+ }
+}

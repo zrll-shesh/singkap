@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.env
+.env.local
+*.tsbuildinfo
+.vercel
+__pycache__
+
+public/maplibre

@@ -1,0 +1,24 @@
+{
+ "arsitektur": "efficientnet_b0",
+ "kelas": [
+  "Honai",
+  "Joglo",
+  "Lamin",
+  "Mbaru Niang",
+  "Rumah Betang",
+  "Rumah Bolon",
+  "Rumah Gadang",
+  "Rumah Limas",
+  "Rumoh Aceh",
+  "Tongkonan"
+ ],
+ "n_latih": 917,
+ "n_validasi": 196,
+ "n_uji": 197,
+ "akurasi_top1_uji": 0.7918781725888325,
+ "akurasi_top3_uji": 0.9187817258883249,
+ "f1_makro_uji": 0.766186460985702,
+ "f1_makro_validasi_terbaik": 0.7853097411794594,
+ "onnx_selisih_maks_vs_pytorch": 7.033348083496094e-06,
+ "ukuran_model_mb": 16.07
+}

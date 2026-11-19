@@ -1,0 +1,19 @@
+{
+ "jumlah_wbtbi_dianalisis": 1925,
+ "persen_tanpa_artikel_id": 0.24363636363636365,
+ "persen_tanpa_artikel_en": 0.8784415584415585,
+ "gini_perhatian_digital": 0.784770127788803,
+ "provinsi_ikd_tertinggi": [
+  "Kepulauan Riau",
+  "Kepulauan Bangka Belitung",
+  "Maluku Utara",
+  "Jambi",
+  "Nusa Tenggara Timur"
+ ],
+ "lambda_rekomendasi": 0.9,
+ "akurasi_cv_top1": 0.7918781725888325,
+ "rag_hit_at_5": 0.9965753424657534,
+ "dimensi_arus_wisata_tersedia": true,
+ "jendela_pageviews": "2025-11 s.d. 2026-10",
+ "tanggal_analisis": "2026-11-19"
+}

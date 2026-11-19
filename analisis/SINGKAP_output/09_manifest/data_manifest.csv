@@ -1,0 +1,11 @@
+dataset,url,lisensi,catatan,jumlah_baris,tanggal_ambil
+Daftar WBTbI (Wikipedia bahasa Indonesia),https://id.wikipedia.org/wiki/Daftar_Warisan_Budaya_Takbenda_Indonesia,CC BY-SA 4.0,revisi 30175284; sumber dipakai: wikipedia,1925,2026-11-19
+Status artikel Wikipedia (MediaWiki API),https://id.wikipedia.org/w/api.php,CC BY-SA 4.0,"keberadaan artikel, langlinks, pageprops",1925,2026-11-19
+Wikimedia Pageviews API,https://wikimedia.org/api/rest_v1/,Data terbuka Wikimedia,jendela 2025-11 s.d. 2026-10,1429,2026-11-19
+Batas provinsi geoBoundaries (ADM1),https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/IDN/ADM1/geoBoundaries-IDN-ADM1_simplified.geojson,CC BY 4.0,disederhanakan,34,2026-11-19
+Wikidata SPARQL (museum),https://query.wikidata.org/sparql,CC0,butir berkoordinat di Indonesia,840,2026-11-19
+Wikidata SPARQL (situs_warisan),https://query.wikidata.org/sparql,CC0,butir berkoordinat di Indonesia,687,2026-11-19
+OpenStreetMap (Overpass API),https://overpass-api.de/api/interpreter,ODbL 1.0,"museum, historic, heritage",4412,2026-11-19
+Arus wisata (berkas manual dari BPS),bps.go.id,Data resmi BPS,bps_arus_wisata.csv,34,2026-11-19
+Wikimedia Commons (foto rumah adat),https://commons.wikimedia.org/w/api.php,Per berkas (lihat atribusi_gambar.csv),"hanya CC0, CC BY, CC BY-SA, domain publik",1310,2026-11-19
+Ringkasan Wikipedia untuk knowledge base,https://id.wikipedia.org,CC BY-SA 4.0,ringkasan pembuka artikel,1502,2026-11-19
