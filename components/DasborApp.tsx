@@ -74,8 +74,8 @@ export default function DasborApp({ provinsi, initial }: { provinsi: Provinsi[];
   const items = useMemo(() => (all ?? []).filter((w) => w.provinsi === sel), [all, sel]);
   const byRank = (a: WarisanLite, b: WarisanLite) => (a.rank ?? 1e9) - (b.rank ?? 1e9);
   const promosi = items.filter((w) => w.kepekaan === 'terbuka').sort(byRank).slice(0, 12);
-  const dokumentasi = items.filter((w) => !w.artikel).sort(byRank);
-  const terjemah = items.filter((w) => w.artikel && !w.en).sort(byRank).slice(0, 12);
+  const dokumentasi = items.filter((w) => w.kepekaan === 'terbuka' && !w.artikel).sort(byRank);
+  const terjemah = items.filter((w) => w.kepekaan === 'terbuka' && w.artikel && !w.en).sort(byRank).slice(0, 12);
   const konfirmasi = items.filter((w) => w.kepekaan === 'perlu_persetujuan').sort(byRank);
   const noEn = items.length ? items.filter((w) => !w.en).length / items.length : 0;
 

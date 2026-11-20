@@ -2,6 +2,7 @@ import Link from 'next/link';
 import FogHero from '@/components/FogHero';
 import Bars from '@/components/Bars';
 import { YearChart } from '@/components/Charts';
+import RandomButton from '@/components/RandomButton';
 import Meter from '@/components/Meter';
 import { PROVINSI, RINGKASAN, WARISAN, hiddenOpen } from '@/lib/data';
 import { getI18n } from '@/lib/lang-server';
@@ -40,7 +41,7 @@ export default async function Beranda() {
   const featList: [string, [string, string]][] = [
     ['/peta', feat.peta as [string, string]],
     ['/jalur', feat.jalur(f.pct(rec.dasar.porsi_5_terlihat, 0), f.pct(rec.terpilih.porsi_5_terlihat, 0)) as [string, string]],
-    ['/kenali', feat.kenali(R.cv.kelas.length) as [string, string]],
+    ['/kenali', feat.kenali(R.cvAktif.kelas) as [string, string]],
     ['/tanya', feat.tanya(f.num(WARISAN.length)) as [string, string]],
     ['/dasbor', feat.dasbor as [string, string]],
     ['/jelajah', feat.jelajah as [string, string]],
@@ -72,6 +73,27 @@ export default async function Beranda() {
             </span>
             <span>{H.count(f.num(R.n))}</span>
           </div>
+        </div>
+      </section>
+
+      <section className="cara-kerja" aria-labelledby="judul-cara-kerja">
+        <div className="wadah">
+          <h2 id="judul-cara-kerja" className="sr-only">
+            {H.howTitle}
+          </h2>
+          <ol>
+            {H.howSteps.map(([judul, isi], i) => (
+              <li key={judul}>
+                <span className="cara-no" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <div>
+                  <strong>{judul}</strong>
+                  <p>{isi}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -210,6 +232,9 @@ export default async function Beranda() {
                 {H.spotTrip}
               </Link>
             </div>
+            <p style={{ marginTop: 14 }}>
+              <RandomButton ids={hiddenOpen(300).map((w) => w.id)} label={H.random} className="tautan-tombol" />
+            </p>
           </div>
           <div>
             <p className="redup">{H.spotOthers}</p>

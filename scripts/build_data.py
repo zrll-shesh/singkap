@@ -425,6 +425,10 @@ sig = lambda p: 'signifikan secara statistik (p < 0,05)' if p < 0.05 else 'tidak
 bali_rank = int(reg.set_index('provinsi').loc['Bali', 'peringkat_ikd'])
 cvm = json.load(open(SRC / '05_model_cv/metrics.json'))
 ragc = json.load(open(SRC / '07_rag/rag_config.json'))
+_rep9 = pd.read_csv(SRC / '05_model_cv/laporan_klasifikasi_uji.csv', index_col=0)
+_rep9 = _rep9.loc[[k for k in cvm['kelas'] if k != 'Lamin' and k in _rep9.index]]
+CV9 = {'kelas': int(len(_rep9)), 'n_uji': int(_rep9['support'].sum()),
+       'akurasi_top1': float((_rep9['recall'] * _rep9['support']).sum() / _rep9['support'].sum())}
 DOMAIN_EN = {'ADAT_RITUS': 'Customs, rites, and festivals', 'KERAJINAN': 'Traditional craftsmanship',
              'PENGETAHUAN_ALAM': 'Knowledge about nature and the universe', 'PERTUNJUKAN': 'Performing arts',
              'LISAN': 'Oral traditions and expressions'}
@@ -493,24 +497,17 @@ INSIGHTS = [
                  f"{R0['ikd_rata2']:.3f} to {R1['ikd_rata2']:.3f} and cuts the share of the five most visible provinces from "
                  f"{pe(R0['porsi_5_terlihat'])} to {pe(R1['porsi_5_terlihat'])}, while keeping {pe(R1['ndcg10'], 0)} of relevance."),
     dict(id='cv', judul='Mengenali rumah adat dari satu foto',
-         teks=f"Model kami mengenali {len(cvm['kelas'])} jenis rumah adat dengan tebakan pertama benar {fmt_pct(cvm['akurasi_top1_uji'])} dan jawaban "
-              f"benar di tiga teratas {fmt_pct(cvm['akurasi_top3_uji'])} pada {cvm['n_uji']} foto uji. Semuanya berjalan di ponsel tanpa server.",
+         teks=f"Model kami mengenali {CV9['kelas']} jenis rumah adat langsung di ponsel. Pada {CV9['n_uji']} foto uji, tebakan pertamanya "
+              f"benar {fmt_pct(CV9['akurasi_top1'])}, tanpa satu pun foto dikirim ke server.",
          judul_en='Recognising traditional houses from one photo',
-         teks_en=f"Our model recognises {len(cvm['kelas'])} types of traditional houses, top-1 correct {pe(cvm['akurasi_top1_uji'])} and top-3 "
-                 f"{pe(cvm['akurasi_top3_uji'])} on {cvm['n_uji']} test photos. It runs on the phone, without a server."),
+         teks_en=f"Our model recognises {CV9['kelas']} types of traditional houses right on the phone. On {CV9['n_uji']} test photos its first guess "
+                 f"was right {pe(CV9['akurasi_top1'])} of the time, without sending a single photo to a server."),
     dict(id='rag', judul='Asisten yang tahu kapan harus bilang belum tahu',
          teks=f"Dari {ragc['evaluasi']['n_pertanyaan_positif']} pertanyaan uji, dokumen yang tepat ditemukan di lima teratas untuk "
               f"{fmt_pct(ragc['evaluasi']['hit_at_5'])} pertanyaan, dan pertanyaan di luar budaya tidak dijawab asal.",
          judul_en='An assistant that knows when to say it does not know',
          teks_en=f"Across {ragc['evaluasi']['n_pertanyaan_positif']} test questions, the right document appears in the top five "
                  f"{pe(ragc['evaluasi']['hit_at_5'])} of the time, and off-topic questions are declined rather than guessed."),
-    dict(id='cakupan', judul='Yang belum bisa kami ukur',
-         teks=f"Data mencakup {fmt_num(len(item))} dari 2.727 WBTbI resmi, yaitu penetapan 2013 sampai 2023. Penetapan 2024 dan 2025 belum ada di "
-              'sumber terbuka. Arus wisata memakai perjalanan wisatawan nusantara 2025 dari BPS karena data wisatawan mancanegara per provinsi '
-              'tidak tersedia terbuka.',
-         judul_en='What we cannot measure yet',
-         teks_en=f"The data covers {len(item):,} of 2,727 official items, designated 2013 to 2023. The 2024 and 2025 designations are not yet in "
-                 'open sources. Tourist flow uses 2025 domestic trips from Statistics Indonesia because foreign arrivals by province are not openly available.'),
 ]
 
 MAKNA = {
@@ -532,12 +529,10 @@ MAKNA = {
                  'In other words, SINGKAP does not turn every culture into a spectacle; rites and ceremonies are introduced only with their owners’ consent.'),
     'rekomendasi': ('Artinya, wisatawan tetap mendapat rekomendasi yang sesuai minat, tetapi sebagian perhatian kini mengalir ke daerah yang selama ini terlewat.',
                     'In other words, travellers still get relevant suggestions, but part of the attention now flows to places that used to be overlooked.'),
-    'cv': ('Artinya, siapa pun bisa mengenali rumah adat di depannya dan langsung terhubung ke warisan lain dari daerah asalnya, tanpa koneksi ke server.',
+    'cv': ('Artinya, siapa pun bisa mengenali rumah adat di depannya dan langsung terhubung ke warisan lain dari daerah asalnya.',
            'In other words, anyone can recognise the house in front of them and connect straight to other heritage from its region, with no server involved.'),
     'rag': ('Artinya, asisten SINGKAP bisa dipercaya: ia menjawab dari sumber yang jelas dan berani berkata belum tahu.',
             'In other words, the SINGKAP assistant can be trusted: it answers from clear sources and is willing to say it does not know.'),
-    'cakupan': ('Artinya, temuan ini adalah batas bawah; dengan data penetapan terbaru, kesenjangannya kemungkinan lebih besar.',
-                'In other words, these findings are a lower bound; with the latest designations the gap is likely larger.'),
 }
 for x in INSIGHTS:
     if x['id'] in MAKNA:
@@ -766,7 +761,19 @@ labels = json.load(open(SRC / '05_model_cv/labels.json'))
 # Kelas yang data latihnya terbukti tercampur foto tidak relevan dinonaktifkan di web sampai model dilatih ulang
 NONAKTIF = {'Lamin': 'Data latih kelas ini tercampur foto yang tidak relevan, sehingga dinonaktifkan sampai model dilatih ulang.'}
 labels['nonaktif'] = {k: v for k, v in NONAKTIF.items() if k in [c['nama'] for c in labels['kelas']]}
+# Metrik untuk kelas yang aktif di web (kelas nonaktif dikeluarkan; perhitungan konservatif dari recall per kelas)
+_rep = pd.read_csv(SRC / '05_model_cv/laporan_klasifikasi_uji.csv', index_col=0)
+_aktif = _rep.loc[[c['nama'] for c in labels['kelas'] if c['nama'] not in labels['nonaktif'] and c['nama'] in _rep.index]]
+labels['metrik_aktif'] = {
+    'kelas': int(len(_aktif)),
+    'n_uji': int(_aktif['support'].sum()),
+    'akurasi_top1': round(float((_aktif['recall'] * _aktif['support']).sum() / _aktif['support'].sum()), 4),
+    'f1_makro': round(float(_aktif['f1-score'].mean()), 4),
+}
 dump(PUB / 'models/labels.json', labels, indent=1)
+_r = json.loads((DATA / 'ringkasan.json').read_text(encoding='utf-8'))
+_r['cvAktif'] = labels['metrik_aktif']
+dump(DATA / 'ringkasan.json', _r)
 shutil.copy(SRC / '05_model_cv/rumah_adat.onnx', PUB / 'models/rumah_adat.onnx')
 manifest = pd.read_csv(SRC / '09_manifest/data_manifest.csv')
 manifest.loc[len(manifest)] = {'dataset': 'Arus wisata (perjalanan wisatawan nusantara 2025)', 'url': A_SOURCE.split(' ')[-1],

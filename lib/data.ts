@@ -54,6 +54,7 @@ export interface Ringkasan {
   rag: { hit_at_1: number; hit_at_5: number; akurasi_router: number; fpr_pada_tau: number; n_pertanyaan_positif: number };
   rekomendasi: { dasar: EvalRow; terpilih: EvalRow };
   grafik: Grafik;
+  cvAktif: { kelas: number; n_uji: number; akurasi_top1: number; f1_makro: number };
   dkiPerkiraan?: boolean;
   sumberA: string;
   domain: Record<string, { n: number; tanpa: number }>;

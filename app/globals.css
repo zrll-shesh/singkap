@@ -2542,3 +2542,126 @@ body.mode-baca #konten h3:hover {
 .batang {
   grid-template-columns: minmax(12ch, 22ch) 1fr 6ch;
 }
+
+/* Tiga langkah SINGKAP di beranda */
+.cara-kerja {
+  background: var(--tinta);
+  color: var(--kapas);
+  padding-block: 28px;
+}
+
+.cara-kerja ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.cara-kerja li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.cara-kerja strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.35rem;
+  color: var(--kunyit-2);
+  margin-bottom: 4px;
+}
+
+.cara-kerja p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #d6dcf3;
+}
+
+.cara-no {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--kunyit);
+  color: var(--kunyit-2);
+  font: 700 0.95rem var(--sans);
+}
+
+@media (max-width: 860px) {
+  .cara-kerja ol {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* Panel bantuan suara di layar kecil: dipasang tetap agar tidak keluar layar */
+@media (max-width: 760px) {
+  .suara-panel {
+    position: fixed;
+    top: calc(var(--header) + 8px);
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-height: calc(100svh - var(--header) - 24px);
+    overflow-y: auto;
+  }
+}
+
+/* Penyempurnaan tata letak di layar kecil */
+.angka-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.angka-grid > div {
+  flex: 1 1 150px;
+}
+
+@media (max-width: 600px) {
+  .batang {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .batang > span:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .tabel-wadah table {
+    min-width: 560px;
+  }
+
+  .grafik:not(.grafik-kecil) .g-sumbu,
+  .grafik:not(.grafik-kecil) .g-legenda text,
+  .grafik:not(.grafik-kecil) .g-nilai,
+  .grafik:not(.grafik-kecil) .g-label-titik,
+  .grafik:not(.grafik-kecil) .g-label-ambang {
+    font-size: 21px;
+  }
+
+  .grafik:not(.grafik-kecil) .g-anotasi,
+  .grafik:not(.grafik-kecil) .g-zona-label {
+    font-size: 22px;
+  }
+
+  .grafik:not(.grafik-kecil) .g-anotasi-besar {
+    font-size: 26px;
+  }
+
+  .suara-panel .catatan {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabel-wadah td:first-child,
+  .tabel-wadah th:first-child {
+    min-width: 170px;
+  }
+}

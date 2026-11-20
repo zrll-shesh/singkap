@@ -87,8 +87,9 @@ Seluruh pipeline ada di notebook `analisis/SINGKAP_pipeline_v2_done.ipynb`, deng
 | **Peta Singkap** | Semua | Peta tiga dimensi 34 provinsi menurut IKD, K, V, atau A; profil provinsi, komposisi domain, museum dan situs |
 | **Jalur Singkap** | Wisatawan | Rekomendasi warisan sesuai minat dan tujuan, dengan pengaturan Pemerataan, perbandingan dengan rekomendasi biasa, dan panduan perjalanan langkah demi langkah (dari luar atau dalam negeri, bandara tujuan, cara menemukan lokasi, dan etika berkunjung) |
 | **Jelajah warisan** | Semua | Cari dan saring 1.925 warisan menurut provinsi, domain, status artikel, dan kepekaan |
-| **Halaman warisan** | Semua | Rumus IKD dengan angka asli warisan itu, komponen visibilitas, posisi di provinsinya, status kepekaan, sumber |
-| **Kenali Rumah Adat** | Wisatawan, pelajar | Foto bangunan lalu AI di peramban mengenali 10 jenis rumah adat; foto tidak dikirim ke server |
+| **Halaman warisan** | Semua | Penjelasan mengapa warisan itu tersembunyi, jejak digitalnya, posisinya di provinsi, status kepekaan, sumber, dan tombol bagikan |
+| **Singkap acak** | Semua | Satu klik untuk bertemu warisan tersembunyi secara acak |
+| **Kenali Rumah Adat** | Wisatawan, pelajar | Foto, kamera langsung, atau contoh foto; AI di peramban mengenali 9 jenis rumah adat dan foto tidak dikirim ke server |
 | **Tanya Singkap** | Semua | Asisten tanya jawab yang menjawab dari knowledge base SINGKAP, selalu dengan sumber, dan berkata belum tahu bila sumbernya tidak ada |
 | **Dasbor Prioritas Daerah** | Dinas kebudayaan dan pariwisata | Prioritas promosi, dokumentasi, penerjemahan, dan konfirmasi komunitas, bisa diunduh sebagai CSV |
 | **Dwibahasa** | Semua | Seluruh antarmuka dan temuan dalam Bahasa Indonesia dan English |
@@ -123,7 +124,7 @@ Seluruh pipeline ada di notebook `analisis/SINGKAP_pipeline_v2_done.ipynb`, deng
 |---|---|
 | Ketahanan IKD | Korelasi Spearman agregasi perkalian vs aditif 0,94; ablasi komponen visibilitas minimal 0,98 dengan irisan 100 teratas minimal 85%; tanpa dimensi A korelasinya 0,16, sehingga A menambah informasi yang berarti |
 | Rekomendasi berkeadilan | Pada 400 pelancong simulasi, λ = 0,85 menaikkan rata-rata IKD rekomendasi dari 0,187 menjadi 0,227, menurunkan porsi lima provinsi paling terlihat dari 12,3% menjadi 8,2%, menurunkan Gini eksposur dari 0,346 menjadi 0,339, dengan NDCG@10 0,93 |
-| Kenali Rumah Adat | EfficientNet-B0, 10 kelas, 197 foto uji: akurasi top-1 79,2%, top-3 91,9%, F1 makro 0,77; model ONNX 16 MB berjalan di peramban |
+| Kenali Rumah Adat | EfficientNet-B0, 9 jenis rumah adat aktif, 170 foto uji: tebakan pertama benar 77,6%, F1 makro 0,75; model ONNX 16 MB berjalan di peramban |
 | Tanya Singkap | 2.149 potongan pengetahuan; dari 292 pertanyaan uji, dokumen tepat di posisi pertama 95,2% dan di lima teratas 99,7%; pertanyaan di luar topik tidak lolos (tingkat salah terima 0%); akurasi router sapaan 100% |
 | Cakupan data | 1.925 WBTbI, 1.541 museum, dan 4.347 situs warisan terpetakan di 34 provinsi |
 

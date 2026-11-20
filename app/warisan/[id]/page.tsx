@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Bars from '@/components/Bars';
 import Status from '@/components/Status';
+import ShareButton from '@/components/ShareButton';
 import { WARISAN, getProvinsi, getWarisan } from '@/lib/data';
 import { wikiUrl } from '@/lib/format';
 import { getI18n } from '@/lib/lang-server';
@@ -134,6 +135,7 @@ export default async function WarisanPage(props: { params: Promise<{ id: string 
             <Link className="tombol tombol-garis" href={`/peta?provinsi=${encodeURIComponent(w.provinsi)}`}>
               {D.seeMap(w.provinsi)}
             </Link>
+            <ShareButton nama={w.nama} />
           </div>
           {p && (
             <>

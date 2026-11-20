@@ -94,5 +94,11 @@
  },
  "nonaktif": {
   "Lamin": "Data latih kelas ini tercampur foto yang tidak relevan, sehingga dinonaktifkan sampai model dilatih ulang."
+ },
+ "metrik_aktif": {
+  "kelas": 9,
+  "n_uji": 170,
+  "akurasi_top1": 0.7765,
+  "f1_makro": 0.7526
  }
 }

@@ -146,8 +146,8 @@ export function YearChart({ rows, title, caption }: { rows: { tahun: number; n: 
         <g transform={`translate(${P.l},12)`} className="g-legenda">
           <rect width={10} height={10} rx={2} className="g-isi-kunyit" />
           <text x={16} y={9}>{lang === 'en' ? 'No Wikipedia article' : 'Tanpa artikel Wikipedia'}</text>
-          <rect x={190} width={10} height={10} rx={2} className="g-isi-tarum" />
-          <text x={206} y={9}>{lang === 'en' ? 'Has an article' : 'Sudah ada artikel'}</text>
+          <rect x={260} width={10} height={10} rx={2} className="g-isi-tarum" />
+          <text x={276} y={9}>{lang === 'en' ? 'Has an article' : 'Sudah ada artikel'}</text>
         </g>
       </svg>
     </Figure>
