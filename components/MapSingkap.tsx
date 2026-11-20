@@ -220,10 +220,13 @@ export default function MapSingkap({
       <section className="peta-panel peta-kendali" aria-label={M.title}>
         <h1>{M.title}</h1>
         <p>{info}</p>
-        <div className="segmen" role="group" aria-label={M.chooseMetric}>
+        <span className="label" style={{ color: 'var(--redup-gelap)', fontWeight: 500 }}>
+          {M.chooseMetric}
+        </span>
+        <div className="segmen segmen-dua" role="group" aria-label={M.chooseMetric}>
           {METRIC_KEYS.map((k) => (
             <button key={k} aria-pressed={metric === k} onClick={() => setMetric(k)}>
-              {k === 'IKD' ? t.common.ikd : k}
+              {M.metricNames[k]}
             </button>
           ))}
         </div>
@@ -272,7 +275,7 @@ export default function MapSingkap({
             {(['IKD', 'K', 'V', 'A'] as Metric[]).map((k) => (
               <div key={k}>
                 <b>{f.dec(sel[k], 2)}</b>
-                <span>{k === 'IKD' ? t.common.ikd : k}</span>
+                <span>{M.metricNames[k]}</span>
               </div>
             ))}
           </div>
@@ -336,7 +339,7 @@ export default function MapSingkap({
         <div className="label-titik" style={{ left: hover.x + 14, top: hover.y - 10 }}>
           <strong>{hover.name}</strong>
           <span>
-            {metric === 'IKD' ? t.common.ikd : metric} {f.dec(byName.get(hover.name)?.[metric] ?? 0, 2)}
+            {M.metricNames[metric]} {f.dec(byName.get(hover.name)?.[metric] ?? 0, 2)}
           </span>
         </div>
       )}

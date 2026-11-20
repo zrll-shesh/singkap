@@ -85,13 +85,14 @@ Seluruh pipeline ada di notebook `analisis/SINGKAP_pipeline_v2_done.ipynb`, deng
 | Fitur | Untuk siapa | Yang bisa dilakukan |
 |---|---|---|
 | **Peta Singkap** | Semua | Peta tiga dimensi 34 provinsi menurut IKD, K, V, atau A; profil provinsi, komposisi domain, museum dan situs |
-| **Jalur Singkap** | Wisatawan | Rekomendasi warisan sesuai minat dan tujuan, dengan pengaturan Pemerataan dan perbandingan dengan rekomendasi biasa |
+| **Jalur Singkap** | Wisatawan | Rekomendasi warisan sesuai minat dan tujuan, dengan pengaturan Pemerataan, perbandingan dengan rekomendasi biasa, dan panduan perjalanan langkah demi langkah (dari luar atau dalam negeri, bandara tujuan, cara menemukan lokasi, dan etika berkunjung) |
 | **Jelajah warisan** | Semua | Cari dan saring 1.925 warisan menurut provinsi, domain, status artikel, dan kepekaan |
 | **Halaman warisan** | Semua | Rumus IKD dengan angka asli warisan itu, komponen visibilitas, posisi di provinsinya, status kepekaan, sumber |
 | **Kenali Rumah Adat** | Wisatawan, pelajar | Foto bangunan lalu AI di peramban mengenali 10 jenis rumah adat; foto tidak dikirim ke server |
 | **Tanya Singkap** | Semua | Asisten tanya jawab yang menjawab dari knowledge base SINGKAP, selalu dengan sumber, dan berkata belum tahu bila sumbernya tidak ada |
 | **Dasbor Prioritas Daerah** | Dinas kebudayaan dan pariwisata | Prioritas promosi, dokumentasi, penerjemahan, dan konfirmasi komunitas, bisa diunduh sebagai CSV |
 | **Dwibahasa** | Semua | Seluruh antarmuka dan temuan dalam Bahasa Indonesia dan English |
+| **Bantuan suara** | Penyandang disabilitas netra dan low vision, pengguna lanjut usia, pembelajar | Bacakan seluruh halaman, klik teks untuk dibacakan, tombol Dengarkan pada jawaban asisten, tiga pilihan kecepatan, dalam bahasa Indonesia atau Inggris |
 
 ## 5. Hasil temuan
 

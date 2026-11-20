@@ -260,6 +260,49 @@ export default async function MetodologiPage() {
           </li>
         </ul>
 
+        <h2>{L('Daftar istilah teknis', 'Glossary of technical terms')}</h2>
+        <p>
+          {L(
+            'Di halaman lain kami memakai bahasa sehari-hari. Berikut istilah teknis di balik kata-kata itu.',
+            'Other pages use everyday language. These are the technical terms behind those words.',
+          )}
+        </p>
+        <div className="tabel-wadah">
+          <table>
+            <thead>
+              <tr>
+                <th>{L('Istilah', 'Term')}</th>
+                <th>{L('Di halaman lain disebut', 'Called elsewhere')}</th>
+                <th>{L('Penjelasan', 'Explanation')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(
+                [
+                  ['IKD', L('Skor tersembunyi', 'Hidden score'), L('Indeks Ketakterlihatan Digital = K × (1 − V) × (1 − A), bernilai 0 sampai 1.', 'Digital Invisibility Index = K × (1 − V) × (1 − A), from 0 to 1.')],
+                  ['K', L('Kekayaan', 'Richness'), L('Peringkat persentil rata-rata dari jumlah warisan, keragaman domain (entropi Shannon), museum, dan situs warisan di provinsi.', 'Average percentile rank of the number of items, domain diversity (Shannon entropy), museums, and heritage sites in the province.')],
+                  ['V', L('Terlihat, jejak digital', 'Visible, digital footprint'), L('Rata-rata enam indikator: artikel Indonesia, artikel Inggris, Wikidata, gambar, kunjungan halaman 12 bulan, panjang artikel.', 'Average of six indicators: Indonesian article, English article, Wikidata, image, 12-month page views, article length.')],
+                  ['A', L('Keramaian', 'Crowds'), L('Peringkat persentil titik tengah dari perjalanan wisatawan nusantara 2025 (BPS).', 'Mid-point percentile rank of 2025 domestic trips (Statistics Indonesia).')],
+                  ['λ (lambda)', L('Pemerataan', 'Fairness'), L('Bobot antara kecocokan minat dan skor tersembunyi dalam rekomendasi; Pemerataan 30% setara λ = 0,85.', 'Weight between interest match and hidden score in recommendations; 30% fairness equals λ = 0.85.')],
+                  ['NDCG@10', L('Kecocokan rekomendasi', 'Recommendation relevance'), L('Ukuran kualitas sepuluh rekomendasi teratas dibanding urutan ideal; 1 berarti sempurna.', 'Quality of the top ten suggestions compared with the ideal order; 1 is perfect.')],
+                  ['Gini', L('Ketimpangan', 'Inequality'), L('Ukuran ketimpangan; 0 merata sempurna, 1 timpang total.', 'Inequality measure; 0 is perfectly equal, 1 totally unequal.')],
+                  ['Embedding e5', L('Kemiripan makna', 'Meaning similarity'), L('Model multilingual-e5-small mengubah teks menjadi vektor 384 angka agar kemiripan makna bisa dihitung.', 'The multilingual-e5-small model turns text into a 384-number vector so meaning similarity can be computed.')],
+                  ['EfficientNet-B0', L('AI pengenal rumah adat', 'House-recognition AI'), L('Jaringan saraf konvolusional untuk pengenalan gambar, dilatih ulang (transfer learning) dan dijalankan di peramban dalam format ONNX.', 'A convolutional neural network for image recognition, fine-tuned (transfer learning) and run in the browser as ONNX.')],
+                  ['RAG dan BM25', L('Asisten Tanya Singkap', 'Ask SINGKAP assistant'), L('Asisten mencari potongan pengetahuan dengan BM25, lalu model bahasa Gemini menjawab hanya dari potongan itu dengan sitasi.', 'The assistant retrieves knowledge passages with BM25, then the Gemini language model answers only from them, with citations.')],
+                ] as [string, string, string][]
+              ).map(([a, b, c]) => (
+                <tr key={a}>
+                  <td>
+                    <strong>{a}</strong>
+                  </td>
+                  <td>{b}</td>
+                  <td>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <h2>{L('Rujukan', 'References')}</h2>
         <ol className="rujukan">
           {RUJUKAN.map((r) => (

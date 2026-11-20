@@ -82,6 +82,7 @@ analisis/            notebook yang sudah dijalankan dan keluarannya (tidak ikut 
 
 - Skrip `scripts/prepare-assets.mjs` berjalan otomatis saat `npm install` dan `npm run build`: menyalin worker MapLibre ke `public/maplibre/`, menyalin onnxruntime-web ke `public/ort/` (model AI tidak bergantung CDN), dan mengunduh 9 contoh foto rumah adat dari Wikimedia Commons ke `public/samples/`. Bila unduhan gagal, peramban memuat contoh foto langsung dari Wikimedia.
 - Kenali Rumah Adat bisa membuka kamera langsung (perlu HTTPS, otomatis di Vercel; di lokal berlaku untuk `localhost`).
+- Bantuan suara memakai Web Speech API bawaan peramban (`lib/speech.ts`, `components/SpeechProvider.tsx`, `components/SuaraMenu.tsx`), tanpa layanan luar dan tanpa biaya. Suara yang tersedia bergantung pada perangkat; suara bahasa Indonesia tersedia di Chrome, Edge, Android, dan iOS.
 - Peta tidak memakai basemap pihak ketiga. Hanya poligon provinsi (geoBoundaries) dan titik (Wikidata, OpenStreetMap), sehingga tidak memerlukan API key peta.
 - Model ONNX (16 MB) dan onnxruntime-web dimuat hanya saat halaman Kenali dibuka, lalu di-cache peramban.
 - Huruf Marcellus (judul) dan Plus Jakarta Sans (isi) di-host sendiri melalui Fontsource.

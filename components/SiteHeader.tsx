@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Logo from './Logo';
 import LangToggle from './LangToggle';
+import SuaraMenu from './SuaraMenu';
 import { useI18n } from './I18nProvider';
 
 export default function SiteHeader() {
@@ -30,7 +31,7 @@ export default function SiteHeader() {
       <div className="wadah kepala-isi">
         <Link href="/" className="merek" aria-label={t.nav.home}>
           <Logo size={34} />
-          SINGKAP
+          <span className="merek-teks">SINGKAP</span>
         </Link>
         <nav id="navigasi-utama" className="navigasi" data-buka={open} aria-label="Navigasi">
           {links.map((l) => (
@@ -39,6 +40,7 @@ export default function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <SuaraMenu />
         <LangToggle />
         <button className="tombol-menu" aria-expanded={open} aria-controls="navigasi-utama" onClick={() => setOpen((v) => !v)}>
           {open ? t.nav.close : t.nav.menu}

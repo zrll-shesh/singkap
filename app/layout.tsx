@@ -9,6 +9,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import ChatWidget from '@/components/ChatWidget';
 import { I18nProvider } from '@/components/I18nProvider';
+import { SpeechProvider } from '@/components/SpeechProvider';
 import { getLang } from '@/lib/lang-server';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,10 +35,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={lang}>
       <body>
         <I18nProvider lang={lang}>
-          <SiteHeader />
-          <main id="konten">{children}</main>
-          <SiteFooter />
-          <ChatWidget />
+          <SpeechProvider>
+            <SiteHeader />
+            <main id="konten">{children}</main>
+            <SiteFooter />
+            <ChatWidget />
+          </SpeechProvider>
         </I18nProvider>
       </body>
     </html>

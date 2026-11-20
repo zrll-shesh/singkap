@@ -92,9 +92,19 @@ export default async function WarisanPage(props: { params: Promise<{ id: string 
             {D.whyLead}
           </p>
           {w.IKD !== null && p ? (
-            <div className="rumus kecil" role="math" aria-label={`IKD = ${f.dec(p.K)} × (1 − ${f.dec(w.V)}) × (1 − ${f.dec(p.A)}) = ${f.dec(w.IKD, 3)}`}>
-              {t.common.ikd} = {f.dec(p.K)} × (1 − {f.dec(w.V)}) × (1 − {f.dec(p.A)}) = <span className="k">{f.dec(w.IKD, 3)}</span>
-            </div>
+            <>
+              <p className="skor-besar">{D.whyScore(f.dec(w.IKD, 2))}</p>
+              <Bars
+                data={[
+                  { label: D.whyBars[0], value: p.K, display: f.dec(p.K), tone: 'kunyit' },
+                  { label: D.whyBars[1], value: w.V, display: f.dec(w.V), tone: 'tarum' },
+                  { label: D.whyBars[2], value: p.A, display: f.dec(p.A), tone: 'mengkudu' },
+                ]}
+              />
+              <p className="catatan">
+                <Link href="/metodologi">{D.howCalc}</Link>
+              </p>
+            </>
           ) : (
             <p>{D.noIkd}</p>
           )}

@@ -145,7 +145,7 @@ export default async function Beranda() {
               <YearChart
                 rows={R.grafik.perTahun}
                 title={lang === 'en' ? baru.judul_en ?? baru.judul : baru.judul}
-                caption={lang === 'en' ? baru.teks_en ?? baru.teks : baru.teks}
+                caption={H.yearCaption}
               />
               {makna('penetapan_baru')}
             </div>

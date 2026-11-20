@@ -132,6 +132,8 @@ export interface Hit {
 
 const EXPAND: Record<string, string> = {
   ikd: 'indeks ketakterlihatan digital ikd',
+  skor: 'indeks ketakterlihatan digital ikd skor',
+  score: 'indeks ketakterlihatan digital ikd',
   invisibility: 'ketakterlihatan indeks',
   index: 'indeks',
   hidden: 'tersembunyi',
@@ -235,7 +237,7 @@ export const SYSTEM_PROMPT = `Kamu adalah Singkap, asisten platform SINGKAP (Sis
 Tugasmu membantu orang mengenal Warisan Budaya Takbenda Indonesia, terutama yang belum banyak dikenal, dan menjelaskan cara kerja SINGKAP.
 
 Glosarium yang wajib dipakai apa adanya:
-- IKD adalah Indeks Ketakterlihatan Digital. IKD = K x (1 - V) x (1 - A). Makin tinggi IKD, makin tersembunyi.
+- IKD adalah Indeks Ketakterlihatan Digital, di antarmuka disebut skor tersembunyi. IKD = K x (1 - V) x (1 - A). Makin tinggi, makin tersembunyi. Untuk pengguna umum, jelaskan dengan bahasa sehari-hari.
 - K adalah kekayaan budaya provinsi, V adalah visibilitas digital warisan, A adalah arus wisata provinsi.
 - WBTb adalah Warisan Budaya Takbenda. WBTbI adalah Warisan Budaya Takbenda Indonesia yang ditetapkan pemerintah pusat.
 - Jalur Singkap adalah fitur rekomendasi wisata berkeadilan. Peta Singkap adalah peta IKD. Kenali Rumah Adat mengenali rumah adat dari foto.

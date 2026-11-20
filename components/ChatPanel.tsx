@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import RichText from './RichText';
 import { useI18n } from './I18nProvider';
+import { useSpeech } from './SpeechProvider';
 import type { ChatReply, Sumber } from '@/lib/types';
 
 interface Msg {
@@ -17,6 +18,7 @@ interface Msg {
 export default function ChatPanel({ initial }: { initial?: string }) {
   const { t, lang } = useI18n();
   const T = t.tanya;
+  const sp = useSpeech();
   const [msgs, setMsgs] = useState<Msg[]>([{ role: 'assistant', text: T.greeting, intro: true }]);
   const [saran, setSaran] = useState<string[]>(T.suggestions);
   const [input, setInput] = useState('');
@@ -71,6 +73,16 @@ export default function ChatPanel({ initial }: { initial?: string }) {
         {msgs.map((m, i) => (
           <div key={i} className={`pesan ${m.role === 'user' ? 'pesan-pengguna' : 'pesan-singkap'}`}>
             {m.role === 'user' ? m.text : <RichText text={m.text} />}
+            {m.role === 'assistant' && sp.supported && (
+              <button
+                type="button"
+                className="dengar"
+                data-tts-abaikan
+                onClick={(e) => sp.say(m.text.replace(/\*\*|\[\d+\]/g, ''), (e.currentTarget as HTMLElement).parentElement)}
+              >
+                {t.tts.listen}
+              </button>
+            )}
             {m.aksi === 'buka_jalur_singkap' && (
               <p style={{ marginTop: 10 }}>
                 <Link className="tombol tombol-utama tombol-kecil" href="/jalur">
