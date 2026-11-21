@@ -103,7 +103,7 @@ export default function JalurApp({ initialTujuan, ramai }: { initialTujuan?: str
 
   if (error) return <p className="kosong">{J.loadFail}</p>;
   if (!data) return <p className="kosong">{J.loading}</p>;
-  const label = (i: number) => (lang === 'en' ? data.minat[i].label_en : data.minat[i].label);
+  const label = (i: number) => (lang === 'en' ? data.minat[i].label_en ?? data.minat[i].label : data.minat[i].label);
 
   const recLevel = (1 - data.konfigurasi.lambda) / 0.5;
   const destName = dest !== null ? data.provinsi[dest] : null;
@@ -201,7 +201,7 @@ export default function JalurApp({ initialTujuan, ramai }: { initialTujuan?: str
               .filter(({ i }) => allInterests || i < 10 || interests.includes(i))
               .map(({ m, i }) => (
                 <button key={m.label} className="keping" aria-pressed={interests.includes(i)} onClick={() => toggleInterest(i)}>
-                  {lang === 'en' ? m.label_en : m.label}
+                  {lang === 'en' ? m.label_en ?? m.label : m.label}
                 </button>
               ))}
           </div>

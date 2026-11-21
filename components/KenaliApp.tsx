@@ -25,7 +25,7 @@ interface Labels {
   kelas: { indeks: number; nama: string; provinsi: string }[];
   praproses: { resize: number; center_crop: number; mean: number[]; std: number[] };
   metrik: { akurasi_top1_uji: number; akurasi_top3_uji: number; f1_makro_uji: number; n_uji: number };
-  metrik_aktif: { kelas: number; n_uji: number; akurasi_top1: number; f1_makro: number };
+  metrik_aktif?: { kelas: number; n_uji: number; akurasi_top1: number; f1_makro: number };
   nonaktif?: Record<string, string>;
 }
 
@@ -116,7 +116,7 @@ export default function KenaliApp() {
   const streamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
-    fetch('/models/labels.json')
+    fetch('/models/labels.json', { cache: 'no-cache' })
       .then((r) => r.json())
       .then(setLabels)
       .catch(() => setStatus('galat'));
@@ -391,7 +391,10 @@ export default function KenaliApp() {
         )}
         {labels && (
           <p className="catatan" style={{ marginTop: 20 }}>
-            {K.card(labels.metrik_aktif.n_uji, f.pct(labels.metrik_aktif.akurasi_top1, 0))}{' '}
+            {K.card(
+              labels.metrik_aktif?.n_uji ?? labels.metrik.n_uji,
+              f.pct(labels.metrik_aktif?.akurasi_top1 ?? labels.metrik.akurasi_top1_uji, 0),
+            )}{' '}
             <a href="/data/atribusi_gambar.csv">{K.attribution}</a>.
           </p>
         )}
